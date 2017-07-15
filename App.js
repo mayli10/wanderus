@@ -79,16 +79,16 @@ class BookmarkScreen extends React.Component {
       <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
       <View>
       <View>
-      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      <Image source={require('./images/ny.jpg')} style={BookmarkStyles.post}/>
       </View>
       <View>
-      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      <Image source={require('./images/sf.jpg')} style={BookmarkStyles.post}/>
       </View>
       <View>
-      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      <Image source={require('./images/chicago.jpg')} style={BookmarkStyles.post}/>
       </View>
       <View>
-      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      <Image source={require('./images/london.jpg')} style={BookmarkStyles.post}/>
       </View>
     </View>
       </ScrollView>
@@ -100,11 +100,18 @@ class BookmarkScreen extends React.Component {
 
 const BookmarkStyles = StyleSheet.create({
   post:{
-    marginTop: 5,
-    marginBottom: 5,
+    marginTop: 0,
+    marginBottom: 0,
+    height: 130,
+    width: '100%'
   },
   background: {
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    // flex: 1,
+    // display: 'flex',
+    // flexDirection: 'column',
+    // flexWrap: 'wrap',
+    // justifyContent: 'flext-start'
   }
   // infoContainer: {
   //   display: 'flex',
