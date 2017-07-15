@@ -251,7 +251,143 @@ const Tab = TabNavigator({
 });
 
 
+class RegisterScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Register'
+  };
+    constructor() {
+      super();
+    this.state= {};
+    }
+
+  registerSubmit() {
+    fetch('https://vibrant-bastille-14841.herokuapp.com/register', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+    })
+  })
+  .then((response) => response.json())
+  .then((responseJson) => {
+    /* do something with responseJson and go back to the Login view but
+     * make sure to check for responseJson.success! */
+     console.log(responseJson.success)
+     if (responseJson.success) {
+       this.props.navigation.navigate('login');
+     }
+  })
+  .catch((err) => {
+    /* do something if there was an error with fetching */
+    console.log('Error', err)
+  });
+    }
+
+  render() {
+    return (
+      <View>
+        <Text>Register</Text>
+        <TextInput style={{padding: 10, height: 40}}
+          placeholder="Enter your username"
+          onChangeText={(text)=> this.setState({username: text})}
+        />
+        <TextInput style={{padding: 10, height: 40}}
+          placeholder="Enter password"
+          secureTextEntry={true} onChangeText={(text)=> this.setState({password: text})}
+        />
+        <TouchableOpacity onPress={()=> {this.registerSubmit()}}>
+          <Text>Submit</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
+
+
+
+class Login extends React.Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
+
+  constructor(props){
+    super(props)
+    this.state={}
+  }
+
+  loginClick() {
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+    })
+  })
+  .then((response) => response.json())
+  .then((responseJson) => {
+    /* do something with responseJson and go back to the Login view but
+     * make sure to check for responseJson.success! */
+     console.log(responseJson.success)
+     if (responseJson.success) {
+       this.props.navigation.navigate('tab');
+       AsyncStorage.setItem('user', JSON.stringify ({
+         username: this.state.username,
+         password: this.state.password
+       })
+     )
+     } else {
+       this.setState({message: "Login Error"})
+     }
+  })
+  .catch((err) => {
+    /* do something if there was an error with fetching */
+    console.log('Error', err)
+  });
+  }
+
+  render() {
+    return (
+      <Image source={require('./images/login.jpeg')}
+        style={{
+          flex: 1,
+          backgroundColor: 'transparent',
+          width: undefined,
+          height: undefined,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+      <Text>Login</Text>
+      <TextInput style={{padding: 10, height: 40}}
+          placeholder="Username"
+        />
+        <TextInput style={{padding: 10, height: 40}}
+          placeholder="Password"
+          secureTextEntry={true}
+        />
+        <TouchableOpacity onPress={()=>this.loginClick()}>
+          <Text>Tap to Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
+          <Text>Tap to Register</Text>
+        </TouchableOpacity>
+      </Image>
+    );
+  }
+}
+
 const MyApp = StackNavigator ({
+  login: {
+    screen: Login
+  },
+  register: {
+    screen: RegisterScreen
+  },
   tab: {
     screen: Tab
   },
