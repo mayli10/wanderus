@@ -545,6 +545,7 @@ class Login extends React.Component {
                 style={{
                   fontSize: 30,
                   color: 'white',
+                  margin: 25,
                 }}>LOGIN</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
@@ -552,6 +553,7 @@ class Login extends React.Component {
                   style={{
                     fontSize: 30,
                     color: 'white',
+                    margin: 25,
                   }}>REGISTER</Text>
                 </TouchableOpacity>
               </View>
@@ -581,8 +583,8 @@ class Login extends React.Component {
           return (
             <View style={{flex:1, backgroundColor: '#C6C6C6'}}>
               <View style={splashScreen.logoContainer}>
-                <Animatable.Image duration="1000" animation="fadeInDown" style={splashScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
-                <Animatable.Image duration="1000" animation="fadeInUp" style={splashScreen.logo} source={require('./assets/icons/logo-white.png')} />
+                <Animatable.Image duration={1500} animation="fadeInDown" style={splashScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
+                <Animatable.Image duration={1500} animation="fadeInUp" style={splashScreen.logo} source={require('./assets/icons/logo-white.png')} />
               </View>
             </View>
           )
