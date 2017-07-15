@@ -7,10 +7,15 @@
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
     "expo": "^18.0.4",
+    "express": "^4.15.3",
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-18.0.1.tar.gz",
     "react-native-animatable": "^1.2.2",
+<<<<<<< HEAD
+    "react-native-snap-carousel": "^2.3.1",
+=======
     "react-native-hr": "^1.1.3",
+>>>>>>> f8e0975398fb4b7a61ed6cbc8cbf7da418536096
     "react-navigation": "^1.0.0-beta.11"
   }
 }
