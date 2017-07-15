@@ -71,17 +71,59 @@ class BookmarkScreen extends React.Component {
     />
   )
 
-};
-render() {
-  return (
-    <View>
-      <Image source={require('./images/DG2015-san-francisco.png')} style={{}}/>
+  };
+  render() {
+    return (
+    <View style={BookmarkStyles.background}>
+      <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+      <View>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      </View>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      </View>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      </View>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      </View>
     </View>
-  )
-}
+      </ScrollView>
+    </View>
+    )
+  }
 }
 
 
+const BookmarkStyles = StyleSheet.create({
+  post:{
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  background: {
+    backgroundColor: 'white'
+  }
+  // infoContainer: {
+  //   display: 'flex',
+  //   padding: 20
+  // },
+  // image:{
+  //   height:275,
+  //   width:275
+  // },
+  // locationName: {
+  //   fontSize: 20,
+  //   marginTop: 10,
+  //   marginBottom: 10
+  // },
+  // caption: {
+  //   marginTop: 10,
+  //   fontSize: 12,
+  //   marginBottom: 10
+  // }
+})
 
 class ExploreScreen extends React.Component {
   static navigationOptions = {
