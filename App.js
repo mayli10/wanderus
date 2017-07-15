@@ -14,6 +14,53 @@ import {
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
 import Carousel from 'react-native-snap-carousel';
+import { ImagePicker } from 'expo';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
+
+class UploadScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Upload',
+    tabBarIcon: () => (
+      <Image source={require('./assets/icons/upload.png')}
+      style={NavStyle.icon}
+    />
+  )
+}
+
+constructor(){
+  super();
+  this.state = {
+    image: null,
+  }
+}
+
+render() {
+  let { image } = this.state;
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button
+        title="Pick an image from camera roll"
+        onPress={this._pickImage}
+      />
+      {image &&
+        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      </View>
+    )
+  }
+  _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      aspect: [4, 3],
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      this.setState({ image: result.uri });
+    }
+  };
+}
+
 
 class BookmarkScreen extends React.Component {
   static navigationOptions = {
@@ -27,13 +74,56 @@ class BookmarkScreen extends React.Component {
   };
   render() {
     return (
+    <View style={BookmarkStyles.background}>
+      <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
       <View>
-      <Image source={require('./images/DG2015-san-francisco.png')} style={{}}/>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
       </View>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      </View>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      </View>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={BookmarkStyles.post}/>
+      </View>
+    </View>
+      </ScrollView>
+    </View>
     )
   }
 }
 
+
+const BookmarkStyles = StyleSheet.create({
+  post:{
+    marginTop: 5,
+    marginBottom: 5,
+  },
+  background: {
+    backgroundColor: 'white'
+  }
+  // infoContainer: {
+  //   display: 'flex',
+  //   padding: 20
+  // },
+  // image:{
+  //   height:275,
+  //   width:275
+  // },
+  // locationName: {
+  //   fontSize: 20,
+  //   marginTop: 10,
+  //   marginBottom: 10
+  // },
+  // caption: {
+  //   marginTop: 10,
+  //   fontSize: 12,
+  //   marginBottom: 10
+  // }
+})
 
 class ExploreScreen extends React.Component {
   static navigationOptions = {
@@ -44,40 +134,46 @@ class ExploreScreen extends React.Component {
     />
   )
 
-  };
+};
 
-  render() {
-    return (
-      <View>
-        <View style={styles.category}>
-          <Text>Food</Text>
+render() {
+  return (
+    <ScrollView>
+      <View style={ExploreStyles.exploreContainer}>
+        <View>
+          <Text style={ExploreStyles.Category}>Food</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.categoryRow}>
+            <View style={ExploreStyles.categoryRow}>
               <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
               <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
               <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
-        <View style={styles.category}>
-          <Text>Museums</Text>
-          <View style={styles.categoryRow}>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          </View>
+        <View>
+          <Text style = {ExploreStyles.Category}>Museums</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <View style={ExploreStyles.categoryRow}>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            </View>
+          </ScrollView>
         </View>
-        <View style={styles.category}>
-          <Text>Shopping</Text>
-          <View style={styles.categoryRow}>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          </View>
+        <View >
+          <Text style = {ExploreStyles.Category}>Shopping</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <View style={ExploreStyles.categoryRow}>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            </View>
+          </ScrollView>
         </View>
       </View>
-    )
-  }
+    </ScrollView>
+  )
+}
 }
 
 
@@ -90,45 +186,79 @@ class UserProfile extends React.Component{
     />
   )
 
-  };
-  render() {
-    return (
+};
+render() {
+  return (
+    <ParallaxScrollView
+      parallaxHeaderHeight={100}
+      fadeOutParallaxForeground={false}
+      renderBackground={() => (
+       <View style={userProfile.container}>
+          <Image source={require('./assets/icons/parallax.jpg')}/>
+        </View>
+      )}>
+      <Image source={require('./assets/icons/mockUser.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
       <ScrollView>
-        <View style={styles.profileContainer}>
-          <View style={styles.userInfo}>
-            <Text>User pic here!!</Text>
-            <Text>Username</Text>
-            <Text>Followers, Following, Views</Text>
-            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
-              quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
-              Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
-              Duo Reges: constructio interrete. At enim hic etiam dolore.
-            </Text>
+        <View>
+          <View style={userProfile.UserInfoContainer}>
+            <View style={userProfile.UserInfo}>
+              <Text>following</Text>
+              <Text>145</Text>
+            </View>
+            <View>
+              <Text>followers</Text>
+              <Text>1542</Text>
+            </View>
+            <View>
+              <Text>viewed</Text>
+              <Text>5.6k</Text>
+            </View>
           </View>
-          <View style={styles.buttonBar}>
-            <Image source={require('./assets/icons/Location-Icon.png')} style={{width:30, height:30}}/>
-            <Image source={require('./assets/icons/User-Tag-Icon.png')} style={{width:30, height:30}}/>
-            <Image source={require('./assets/icons/Collections-Icon.png')} style={{width:30, height:30}}/>
-          </View>
+
           <View>
-            <View style={styles.gridRow}>
-            <TouchableOpacity onPress={()=> this.props.navigation.navigate('PostPage')}>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-            </TouchableOpacity>
-            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-            </View>
-            <View style={styles.gridRow}>
-            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-            </View>
+            <Text>following</Text>
           </View>
         </View>
+
       </ScrollView>
-    )
-  }
+    </ParallaxScrollView>
+
+    // <ScrollView>
+    //   <View style={styles.profileContainer}>
+    //     <View style={styles.userInfo}>
+    //       <Text>User pic here!!</Text>
+    //       <Text>Username</Text>
+    //       <Text>Followers, Following, Views</Text>
+    //       <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
+    //         quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
+    //         Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
+    //         Duo Reges: constructio interrete. At enim hic etiam dolore.
+    //       </Text>
+    //     </View>
+    //     <View style={styles.buttonBar}>
+    //       <Image source={require('./assets/icons/Location-Icon.png')} style={{width:30, height:30}}/>
+    //       <Image source={require('./assets/icons/User-Tag-Icon.png')} style={{width:30, height:30}}/>
+    //       <Image source={require('./assets/icons/Collections-Icon.png')} style={{width:30, height:30}}/>
+    //     </View>
+    //     <View>
+    //       <View style={styles.gridRow}>
+    //         <TouchableOpacity onPress={()=> this.props.navigation.navigate('PostPage')}>
+    //           <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+    //         </TouchableOpacity>
+    //         <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+    //       </View>
+    //       <View style={styles.gridRow}>
+    //         <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+    //         <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+    //       </View>
+    //     </View>
+    //   </View>
+    // </ScrollView>
+  )
+}
 }
 
-
+//Post Screen
 class PostScreen extends React.Component {
   static navigationOptions = {
     title: 'PostScreen'
@@ -141,34 +271,43 @@ class PostScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.postContainer}>
-        <View style={styles.header}>
-          <Text style={{marginRight: 'auto'}}>Username</Text>
-          <Image source={require('./assets/icons/Heart-Dark.png')} style={{width:20, height:20}}/>
+      <View style={PostScreenStyles.postContainer}>
+        <View style={stdUserDisp.headerDisplay}>
+          <View style={stdUserDisp.user}>
+            <Image source={require('./assets/icons/mockUser.png')} style={userStyles.userIcon}/>
+            <Text style={userStyles.userName}>username</Text>
+          </View>
+          <View style={stdUserDisp.likes}>
+            <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
+            <Text style={stdUserDisp.likesText}>145</Text>
+          </View>
         </View>
 
-        <View style={styles.postImages}>
-        <Carousel ref={(carousel)=> {this._carousel = carousel}} sliderWidth={20} itemWidth={200}>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
-        </Carousel>
-        </View>
-        <View>
-          <Text>The Coffee Shop</Text>
-          <Text>Somewhere in SF</Text>
-          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
-            quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
-            Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
-            Duo Reges: constructio interrete. At enim hic etiam dolore.
-          </Text>
-        </View>
+        <ScrollView>
+          <View>
+            <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={325} itemWidth={275}>
+              <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
+              <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
+              <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
+            </Carousel>
+          </View>
+
+          <View style={PostScreenStyles.infoContainer}>
+            <Text style={PostScreenStyles.locationName}>The Coffee Shop</Text>
+            <Text style={PostScreenStyles.address}>Somewhere in SF</Text>
+            <Text style={PostScreenStyles.caption}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
+              quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
+              Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
+              Duo Reges: constructio interrete. At enim hic etiam dolore.
+            </Text>
+          </View>
+        </ScrollView>
       </View>
     )
   }
 }
 
-
+//Post
 class Post extends React.Component {
   static navigationOptions = {
     title: 'Post'
@@ -181,21 +320,29 @@ class Post extends React.Component {
     return (
       <View style={postPreview.mainContainer}>
 
-        <View style={homeHead.headerDisplay}>
-          <View style={homeHead.user}>
+        <View style={stdUserDisp.headerDisplay}>
+          <View style={stdUserDisp.user}>
             <Image source={require('./assets/icons/mockUser.png')} style={userStyles.userIcon}/>
             <Text style={userStyles.userName}>username</Text>
           </View>
-          <View style={homeHead.likes}>
+          <View style={stdUserDisp.likes}>
             <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
-          <Text style={homeHead.likesText}>145</Text>
+            <Text style={stdUserDisp.likesText}>145</Text>
           </View>
         </View>
 
         <View style={postPreview.Imginfo}>
-          <TouchableOpacity onPress={()=> this.clickImage()}>
-            <Animatable.Image animation="fadeInUp" source={require('./images/example_post.jpeg')} style={postPreview.image}/>
-          </TouchableOpacity>
+          <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={325} itemWidth={225}>
+            <TouchableOpacity onPress={()=> this.clickImage()}>
+              <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> this.clickImage()}>
+              <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={()=> this.clickImage()}>
+              <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+            </TouchableOpacity>
+          </Carousel>
         </View>
       </View>
     )
@@ -233,6 +380,9 @@ const Tab = TabNavigator({
   Explore: {
     screen: ExploreScreen
   },
+  Upload: {
+    screen: UploadScreen
+  },
   Bookmark: {
     screen: BookmarkScreen
   },
@@ -243,7 +393,7 @@ const Tab = TabNavigator({
   tabBarOptions: {
     style: {
       backgroundColor: '#BDC3C7',
-      height: 35
+      height: 45
     },
     showLabel: false,
   }
@@ -398,7 +548,9 @@ const MyApp = StackNavigator ({
     headerStyle: {
       height: 60,
       backgroundColor: 'white'
-    }
+    },
+    headerBackTitle: null,
+    headerTintColor: 'black'
   },
 
 },)
@@ -413,14 +565,15 @@ const NavStyle = StyleSheet.create({
 const Home = StyleSheet.create({
   container:{
     display: 'flex',
-    alignItems:'center'
+    alignItems:'center',
+    backgroundColor: 'white'
   }
 })
 
 const userStyles = StyleSheet.create({
   userIcon:{
-    height: 60,
-    width: 60
+    height: 70,
+    width: 70
   },
   userName:{
     display: 'flex',
@@ -433,7 +586,8 @@ const userStyles = StyleSheet.create({
   }
 })
 
-const homeHead = StyleSheet.create({
+
+const stdUserDisp = StyleSheet.create({
   headerDisplay:{
     display: 'flex',
     flexDirection: 'row',
@@ -475,7 +629,78 @@ const postPreview = StyleSheet.create({
     width:225
   }
 })
+const PostScreenStyles = StyleSheet.create({
+  postContainer:{
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'white'
+  },
+  infoContainer: {
+    display: 'flex',
+    padding: 20
+  },
+  image:{
+    height:275,
+    width:275
+  },
+  locationName: {
+    fontSize: 20,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  caption: {
+    marginTop: 10,
+    fontSize: 12,
+    marginBottom: 10
+  }
+})
 
+const ExploreStyles = StyleSheet.create({
+  exploreContainer:{
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'white'
+  },
+  Category:{
+    marginTop: 25,
+    marginBottom: 25,
+    fontSize: 15,
+    textAlign: 'center'
+  },
+  categoryRow:{
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  }
+})
+
+const userProfile = StyleSheet.create({
+  container:{
+    display:'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
+  },
+  userIcon: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    marginTop: -35,
+    alignItems: 'center'
+  },
+  UserInfoContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 10
+  },
+  UserInfo:{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  UserIcon:{
+    display:'flex'
+  }
+})
 
 
 const styles = StyleSheet.create({
@@ -485,7 +710,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex:1,
-    marginTop: 20,
+    marginTop: 40,
     alignItems: 'center'
   },
   postContainer: {
