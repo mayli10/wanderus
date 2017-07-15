@@ -10,13 +10,19 @@ import {
   Alert,
   Button,
   ScrollView,
-  AsyncStorage
+  AsyncStorage,
+  Component
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
 import Carousel from 'react-native-snap-carousel';
 import { ImagePicker } from 'expo';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import {
+    LazyloadScrollView,
+    LazyloadView,
+    LazyloadImage
+} from 'react-native-lazyload';
 
 class UploadScreen extends React.Component {
   static navigationOptions = {
