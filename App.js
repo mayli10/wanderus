@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
+import Carousel from 'react-native-snap-carousel';
 
 class BookmarkScreen extends React.Component {
   static navigationOptions = {
@@ -145,8 +146,13 @@ class PostScreen extends React.Component {
           <Text style={{marginRight: 'auto'}}>Username</Text>
           <Image source={require('./assets/icons/Heart-Dark.png')} style={{width:20, height:20}}/>
         </View>
+
         <View style={styles.postImages}>
+        <Carousel ref={(carousel)=> {this._carousel = carousel}} sliderWidth={20} itemWidth={200}>
           <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
+        </Carousel>
         </View>
         <View>
           <Text>The Coffee Shop</Text>
@@ -200,7 +206,10 @@ constructor(props) {
 }
 render() {
   return (
+    <View>
     <ScrollView><View style={styles.container}><Post navigation={this.props.navigation}/><Post/></View></ScrollView>
+
+    </View>
   )
 }
 }
@@ -260,14 +269,11 @@ const Tab = TabNavigator({
 
 
 const MyApp = StackNavigator ({
-  Login: {
-    screen: Login
-  },
   tab: {
     screen: Tab
   },
   Home: {
-    screen: Homepage,
+    screen: Homepage
   },
   PostPage: {
     screen: PostScreen
@@ -311,7 +317,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end'
   },
   postImages: {
-    alignItems: 'center'
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   profileContainer: {
     flex:1,
