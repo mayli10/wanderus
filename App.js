@@ -318,7 +318,7 @@ class PostScreen extends React.Component {
 
         <ScrollView>
           <View>
-            <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={325} itemWidth={275}>
+            <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={350} itemWidth={275}>
               <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
               <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
               <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
