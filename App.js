@@ -265,7 +265,6 @@ render() {
 class PostScreen extends React.Component {
   static navigationOptions = {
     title: 'PostScreen',
-    headerLeft: null,
   };
 
   constructor(props) {
@@ -463,7 +462,8 @@ class RegisterScreen extends React.Component {
 }
 class LoginScreen extends React.Component {
   static navigationOptions = {
-    title: 'Login'
+    title: 'Login',
+    header: null
   }
   constructor(props){
     super(props)
@@ -528,7 +528,7 @@ class LoginScreen extends React.Component {
         <TouchableOpacity onPress={()=>this.loginClick()}>
           <Text
             style={{
-              fontSize: 30,
+              fontSize: 24,
             }}>LOGIN</Text>
           </TouchableOpacity>
           </View>
@@ -538,36 +538,50 @@ class LoginScreen extends React.Component {
 
 class FirstScreen extends React.Component {
   static navigationOptions = {
-    title: 'Login'
+    title: 'Login',
+    header: null
   }
     render() {
       return (
-        <View>
+        <Image source={require('./images/login.jpeg')} style={{flex: 1, width: '100%'}}>
         <View style={loginScreen.logoContainer}>
-          <Image style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
-          <Image style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
+          <Animatable.Image duration={1500} animation="fadeInDown" style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
+          <Animatable.Image duration={1500} animation="fadeInUp" style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
         </View>
         <View style={loginScreen.quoteContainer}>
-          <Text style={loginScreen.quote}>“And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is
-            essential is invisible to the eye.” </Text>
-            <Text style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Text>
-            <Text style={loginScreen.book}>The Little Prince</Text>
+          <Animatable.Text animation="fadeInUp" delay={1000} style={loginScreen.quote}>“And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is
+            essential is invisible to the eye.” </Animatable.Text>
+            <Animatable.Text animation="fadeInUp" delay={1000} style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Animatable.Text>
+            <Animatable.Text animation="fadeInUp" delay={1000} style={loginScreen.book}>The Little Prince</Animatable.Text>
           </View>
+          <View style={loginScreen.buttonContainer}>
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('login')}>
-              <Text
+              <Animatable.Text animation="fadeInUp" delay={1000}
                 style={{
-                  fontSize: 30,
+                  fontSize: 24,
                   color: 'white',
-                }}>LOGIN</Text>
+                  padding: 15,
+                  width: 150,
+                  borderWidth: 1,
+                  borderColor: 'white',
+                  marginBottom: 10,
+                  textAlign: 'center'
+                }}>LOGIN</Animatable.Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
-                <Text
+                <Animatable.Text animation="fadeInUp" delay={1000}
                   style={{
-                    fontSize: 30,
+                    fontSize: 24,
                     color: 'white',
-                  }}>REGISTER</Text>
+                    width: 150,
+                    padding: 15,
+                    borderWidth: 2,
+                    borderColor: 'white',
+                    textAlign: 'center'
+                  }}>REGISTER</Animatable.Text>
                 </TouchableOpacity>
-            </View>
+              </View>
+            </Image>
           );
         }
       }
@@ -588,7 +602,7 @@ class FirstScreen extends React.Component {
           componentWillMount() {
             var navigator = this.props.navigation
             setTimeout(()=> {this.props.navigation.navigate('firstScreen')
-          }, 4000)
+          }, 3000)
         }
         render() {
           return (
@@ -680,19 +694,31 @@ class FirstScreen extends React.Component {
           justifyContent: 'center'
         },
         quote:{
+          marginTop: '5%',
           textAlign: 'center',
           padding: 25,
           color: 'white',
           fontSize: 20,
+          backgroundColor: 'transparent'
         },
         speaker:{
           color: 'white',
-          fontSize: 16
+          fontSize: 16,
+          backgroundColor: 'transparent'
         },
         book:{
           color: 'white',
           fontSize: 14,
-          fontStyle: 'italic'
+          fontStyle: 'italic',
+          backgroundColor: 'transparent'
+        },
+        buttonContainer:{
+          marginTop: '15%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: 'transparent'
         }
       })
 
