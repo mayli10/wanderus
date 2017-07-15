@@ -149,37 +149,6 @@ class ExploreScreen extends React.Component {
   )
 
 };
-
-<<<<<<< HEAD
-  render() {
-    return (
-      <View>
-        <View style={styles.category}>
-          <Text>good eats</Text>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.categoryRow}>
-              <Image source={require('./images/food1.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/food2.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/food3.jpeg')} style={{width: 125, height: 125}}/>
-            </View>
-          </ScrollView>
-        </View>
-        <View style={styles.category}>
-          <Text>explore views</Text>
-          <View style={styles.categoryRow}>
-          <Image source={require('./images/views1.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/views2.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/views3.jpeg')} style={{width: 125, height: 125}}/>
-          </View>
-        </View>
-        <View style={styles.category}>
-          <Text>shop style</Text>
-          <View style={styles.categoryRow}>
-          <Image source={require('./images/shop1.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/shop2.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/shop3.jpeg')} style={{width: 125, height: 125}}/>
-          </View>
-=======
 render() {
   return (
     <ScrollView>
@@ -188,9 +157,9 @@ render() {
           <Text style={ExploreStyles.Category}>Food</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/food1.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/food2.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/food3.jpg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -198,9 +167,9 @@ render() {
           <Text style = {ExploreStyles.Category}>Museums</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/views1.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/views2.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/views3.jpg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -208,12 +177,11 @@ render() {
           <Text style = {ExploreStyles.Category}>Shopping</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/shop1.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/shop2.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/shop3.jpg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
->>>>>>> 8ebac9aa6bbfe7c2a9e0baaa542c88120731a1a4
         </View>
       </View>
     </ScrollView>
