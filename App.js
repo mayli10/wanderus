@@ -453,17 +453,14 @@ class RegisterScreen extends React.Component {
     )
   }
 }
-
 class LoginScreen extends React.Component {
   static navigationOptions = {
-    title: 'Login',
-    header: null
+    title: 'Login'
   }
   constructor(props){
     super(props)
     this.state={}
   }
-
   componentDidMount() {
     AsyncStorage.getItem('user')
     .then(result => {
@@ -480,7 +477,6 @@ class LoginScreen extends React.Component {
     })
     .catch((err)=> {console.log('Error', err)})
   }
-
   loginClick() {
     fetch('https://vibrant-bastille-14841.herokuapp.com/login', {
       method: 'POST',
@@ -511,34 +507,9 @@ class LoginScreen extends React.Component {
         console.log('Error', err)
       });
     }
-
     render() {
       return (
         <View>
-<<<<<<< HEAD
-          <View style={loginScreen.logoContainer}>
-            <Animatable.Image animation="fadeInDown" style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
-            <Animatable.Image animation="fadeInUp" style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
-          </View>
-
-
-          <View style={loginScreen.quoteContainer}>
-            <Animatable.Text animation="fadeInUp" delay="1000" style={loginScreen.quote}>“And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is
-              essential is invisible to the eye.” </Animatable.Text>
-              <Animatable.Text animation="fadeInUp" delay="1000" style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Animatable.Text>
-              <Animatable.Text animation="fadeInUp" delay="1000" style={loginScreen.book}>The Little Prince</Animatable.Text>
-            </View>
-            <View>
-              <TextInput style={{padding: 10, height: 40}}
-                placeholder="Username"
-              />
-              <TextInput style={{padding: 10, height: 40}}
-                placeholder="Password"
-                secureTextEntry={true}
-              />
-            </View>
-            <TouchableOpacity onPress={()=>this.loginClick()}>
-=======
           <TextInput style={{padding: 10, height: 40}}
             placeholder="Username"
           />
@@ -546,7 +517,6 @@ class LoginScreen extends React.Component {
             placeholder="Password"
             secureTextEntry={true}
           />
-
         <TouchableOpacity onPress={()=>this.loginClick()}>
           <Text
             style={{
@@ -569,25 +539,17 @@ class FirstScreen extends React.Component {
           <Image style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
           <Image style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
         </View>
-
-
         <View style={loginScreen.quoteContainer}>
           <Text style={loginScreen.quote}>“And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is
             essential is invisible to the eye.” </Text>
             <Text style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Text>
             <Text style={loginScreen.book}>The Little Prince</Text>
           </View>
-
             <TouchableOpacity onPress={()=>this.props.navigation.navigate('login')}>
->>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
               <Text
                 style={{
                   fontSize: 30,
                   color: 'white',
-<<<<<<< HEAD
-                  margin: 25,
-=======
->>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
                 }}>LOGIN</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
@@ -595,14 +557,12 @@ class FirstScreen extends React.Component {
                   style={{
                     fontSize: 30,
                     color: 'white',
-<<<<<<< HEAD
-                    margin: 25,
                   }}>REGISTER</Text>
                 </TouchableOpacity>
-              </View>
-            );
-          }
+            </View>
+          );
         }
+      }
 
 
         class SplashScreen extends React.Component {
@@ -619,7 +579,7 @@ class FirstScreen extends React.Component {
 
           componentWillMount() {
             var navigator = this.props.navigation
-            setTimeout(()=> {this.props.navigation.navigate('login')
+            setTimeout(()=> {this.props.navigation.navigate('firstScreen')
           }, 4000)
         }
         render() {
@@ -629,10 +589,6 @@ class FirstScreen extends React.Component {
                 <Animatable.Image duration={1500} animation="fadeInDown" style={splashScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
                 <Animatable.Image duration={1500} animation="fadeInUp" style={splashScreen.logo} source={require('./assets/icons/logo-white.png')} />
               </View>
-=======
-                  }}>REGISTER</Text>
-                </TouchableOpacity>
->>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
             </View>
           )
         }
@@ -640,23 +596,26 @@ class FirstScreen extends React.Component {
 
       const MyApp = StackNavigator ({
         splash: {
-          screen: SplashScreen
-        },
-        login: {
-          screen: Login
-        },
-        register: {
-          screen: RegisterScreen
-        },
-        tab: {
-          screen: Tab
-        },
-        Home: {
-          screen: Homepage
-        },
-        PostPage: {
-          screen: PostScreen
-        }
+        screen: SplashScreen
+      },
+      firstScreen: {
+        screen: FirstScreen
+      },
+      login: {
+        screen: LoginScreen
+      },
+      register: {
+        screen: RegisterScreen
+      },
+      tab: {
+        screen: Tab
+      },
+      Home: {
+        screen: Homepage
+      },
+      PostPage: {
+        screen: PostScreen
+      }
       },
       {
         navigationOptions: {
@@ -729,7 +688,6 @@ class FirstScreen extends React.Component {
         }
       })
 
-<<<<<<< HEAD
       const NavStyle = StyleSheet.create({
         icon: {
           width: 30,
@@ -741,48 +699,6 @@ class FirstScreen extends React.Component {
         container:{
           display: 'flex',
           alignItems:'center',
-=======
-        componentWillMount() {
-          var navigator = this.props.navigation
-          setTimeout(()=> {this.props.navigation.navigate('firstScreen')
-        }, 2000)
-      }
-      render() {
-        return (
-          <View style={{flex:1, backgroundColor: 'red'}}></View>
-        )
-      }
-    }
-
-    const MyApp = StackNavigator ({
-      splash: {
-        screen: SplashScreen
-      },
-      firstScreen: {
-        screen: FirstScreen
-      },
-      login: {
-        screen: LoginScreen
-      },
-      register: {
-        screen: RegisterScreen
-      },
-      tab: {
-        screen: Tab
-      },
-      Home: {
-        screen: Homepage
-      },
-      PostPage: {
-        screen: PostScreen
-      }
-    },
-    {
-      navigationOptions: {
-        headerTitle: <Image source={require('./assets/icons/logo.png')} style={{width: 150, height:30}}/>,
-        headerStyle: {
-          height: 60,
->>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
           backgroundColor: 'white'
         }
       })
