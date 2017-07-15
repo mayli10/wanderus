@@ -205,20 +205,30 @@ render() {
               <Text>following</Text>
               <Text>145</Text>
             </View>
-            <View>
+            <View style={userProfile.UserInfo}>
               <Text>followers</Text>
               <Text>1542</Text>
             </View>
-            <View>
+            <View style={userProfile.UserInfo}>
               <Text>viewed</Text>
               <Text>5.6k</Text>
             </View>
           </View>
-
-          <View>
-            <Image source={require('./assets/icons/mockUser.png')}/>
+          <View style={{
+              borderBottomColor: 'grey',
+              borderBottomWidth: 0.5 ,
+          }}/>
+          <View style={userProfile.iconContainer}>
+            <Image style={userProfile.icon} source={require('./assets/icons/grid.png')}/>
+            <Image style={userProfile.icon} source={require('./assets/icons/location.png')}/>
+            <Image style={userProfile.icon} source={require('./assets/icons/userTag.png')}/>
+            <Image style={userProfile.icon} source={require('./assets/icons/collection.png')}/>
           </View>
         </View>
+        <View style={{
+            borderBottomColor: 'grey',
+            borderBottomWidth: 0.5 ,
+        }}/>
 
       </ScrollView>
     </ParallaxScrollView>
@@ -344,6 +354,12 @@ class Post extends React.Component {
             </TouchableOpacity>
           </Carousel>
         </View>
+        <View style={{
+            borderBottomColor: 'grey',
+            borderBottomWidth: 0.5 ,
+            marginTop: 20,
+            marginBottom: 10
+        }}/>
       </View>
     )
   }
@@ -608,7 +624,6 @@ const postPreview = StyleSheet.create({
   mainContainer:{
     flex: 1,
     width: '95%',
-    marginBottom: 20,
   },
   Imginfo:{
     display: 'flex',
@@ -680,7 +695,7 @@ const userProfile = StyleSheet.create({
   UserInfoContainer:{
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     margin: 10
   },
   UserInfo:{
@@ -691,6 +706,18 @@ const userProfile = StyleSheet.create({
   },
   UserIcon:{
     display:'flex'
+  },
+  iconContainer:{
+    marginTop: 10,
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  icon: {
+    width: 30,
+    height: 30 ,
   }
 })
 
