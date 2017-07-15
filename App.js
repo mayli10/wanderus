@@ -222,7 +222,7 @@ render() {
           <Image source={require('./assets/icons/parallax.jpg')}/>
         </View>
       )}>
-      <Image source={require('./assets/icons/mockUser.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
+      <Image source={require('./images/may.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
       <ScrollView>
         <View>
           <View style={userProfile.UserInfoContainer}>
@@ -254,7 +254,32 @@ render() {
           borderBottomColor: 'grey',
           borderBottomWidth: 0.5 ,
         }}/>
-
+        <View>
+        <View style={userProfile.gridRow}>
+          <Image source={require('./images/userGrid/1.jpg')} style={userProfile.gridImage}/>
+          <Image source={require('./images/userGrid/2.jpg')} style={userProfile.gridImage}/>
+        </View>
+        <View style={userProfile.gridRow}>
+          <Image source={require('./images/userGrid/3.jpg')} style={userProfile.gridImage}/>
+          <Image source={require('./images/userGrid/4.jpg')} style={userProfile.gridImage}/>
+        </View>
+        <View style={userProfile.gridRow}>
+          <Image source={require('./images/userGrid/5.jpg')} style={userProfile.gridImage}/>
+          <Image source={require('./images/userGrid/6.jpg')} style={userProfile.gridImage}/>
+        </View>
+        <View style={userProfile.gridRow}>
+          <Image source={require('./images/userGrid/7.jpg')} style={userProfile.gridImage}/>
+          <Image source={require('./images/userGrid/8.jpg')} style={userProfile.gridImage}/>
+        </View>
+        <View style={userProfile.gridRow}>
+          <Image source={require('./images/userGrid/9.jpg')} style={userProfile.gridImage}/>
+          <Image source={require('./images/userGrid/10.jpg')} style={userProfile.gridImage}/>
+        </View>
+        <View style={userProfile.gridRow}>
+          <Image source={require('./images/userGrid/11.jpg')} style={userProfile.gridImage}/>
+          <Image source={require('./images/userGrid/12.jpg')} style={userProfile.gridImage}/>
+        </View>
+        </View>
       </ScrollView>
     </ParallaxScrollView>
   )
@@ -839,7 +864,6 @@ class FirstScreen extends React.Component {
           justifyContent: 'space-around'
         }
       })
-
       const userProfile = StyleSheet.create({
         container:{
           display:'flex',
@@ -878,6 +902,17 @@ class FirstScreen extends React.Component {
         icon: {
           width: 30,
           height: 30 ,
+        },
+        gridRow: {
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          marginTop: 5,
+          marginLeft: 8,
+          marginRight:8
+        },
+        gridImage: {
+          height: 175,
+          width: 175,
         }
       })
 
