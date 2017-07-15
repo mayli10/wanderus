@@ -155,10 +155,30 @@ render() {
           <Image source={require('./assets/icons/parallax.jpg')}/>
         </View>
       )}>
-      <View style={{ height: 500 }}>
-        <Image source={require('./assets/icons/mockUser.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
-        <Text>Scroll me</Text>
-      </View>
+      <Image source={require('./assets/icons/mockUser.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
+      <ScrollView>
+        <View>
+          <View style={userProfile.UserInfoContainer}>
+            <View style={userProfile.UserInfo}>
+              <Text>following</Text>
+              <Text>145</Text>
+            </View>
+            <View>
+              <Text>followers</Text>
+              <Text>1542</Text>
+            </View>
+            <View>
+              <Text>viewed</Text>
+              <Text>5.6k</Text>
+            </View>
+          </View>
+
+          <View>
+            <Text>following</Text>
+          </View>
+        </View>
+
+      </ScrollView>
     </ParallaxScrollView>
 
     // <ScrollView>
@@ -331,7 +351,7 @@ const Tab = TabNavigator({
   tabBarOptions: {
     style: {
       backgroundColor: '#BDC3C7',
-      height: 40
+      height: 45
     },
     showLabel: false,
   }
@@ -492,6 +512,21 @@ const userProfile = StyleSheet.create({
     marginLeft: 'auto',
     marginTop: -35,
     alignItems: 'center'
+  },
+  UserInfoContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 10
+  },
+  UserInfo:{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  UserIcon:{
+    display:'flex'
   }
 })
 
