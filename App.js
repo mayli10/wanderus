@@ -18,6 +18,12 @@ import Carousel from 'react-native-snap-carousel';
 import { ImagePicker } from 'expo';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
+
+const loginBackground = require('./images/login.jpeg');
+const exampleImg = require('./images/example_post.jpeg');
+const chloeIcon = require('./images/chloe.png');
+const eliseIcon = require('./images/elise.png');
+
 class UploadScreen extends React.Component {
   static navigationOptions = {
     title: 'Upload',
@@ -152,9 +158,9 @@ render() {
           <Text style={ExploreStyles.Category}>Food</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -162,9 +168,9 @@ render() {
           <Text style = {ExploreStyles.Category}>Museums</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -172,9 +178,9 @@ render() {
           <Text style = {ExploreStyles.Category}>Shopping</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+              <Image source={exampleImg} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -340,7 +346,7 @@ class Post extends React.Component {
 
         <View style={stdUserDisp.headerDisplay}>
           <View style={stdUserDisp.user}>
-            <Image source={require('./assets/icons/mockUser.png')} style={userStyles.userIcon}/>
+            <Image source={this.props.userImage} style={userStyles.userIcon}/>
             <Text style={userStyles.userName}>username</Text>
           </View>
           <View style={stdUserDisp.likes}>
@@ -390,7 +396,7 @@ render() {
   return (
     <ScrollView>
       <Animatable.View animation="fadeInRight" style={Home.container}>
-        <Post navigation={this.props.navigation}/><Post/>
+        <Post navigation={this.props.navigation} userImage={chloeIcon}/><Post userImage={eliseIcon}/>
       </Animatable.View>
     </ScrollView>
   )
@@ -515,7 +521,7 @@ class Login extends React.Component {
     })
   })
   .then(response => {
-    this.props.navigation.navigate('tab')
+    this.props.navigation.navigate('tab') //REMOVE LATER
     response.json()})
   .then((responseJSON) => {
     if(responseJSON.success) {
@@ -536,7 +542,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Image source={require('./images/login.jpeg')}
+      <Image source={loginBackground}
         style={{
           flex: 1,
           backgroundColor: 'transparent',
@@ -564,7 +570,34 @@ class Login extends React.Component {
   }
 }
 
+
+class SplashScreen extends React.Component {
+
+  static navigationOptions = {
+    title: 'Splash'
+  }
+
+  constructor(props){
+    super(props)
+    this.state={}
+  }
+
+  componentWillMount() {
+    var navigator = this.props.navigation
+    setTimeout(()=> {this.props.navigation.navigate('login')
+    }, 2000)
+  }
+  render() {
+    return (
+      <View style={{flex:1, backgroundColor: 'red'}}></View>
+    )
+  }
+}
+
 const MyApp = StackNavigator ({
+  splash: {
+    screen: SplashScreen
+  },
   login: {
     screen: Login
   },
@@ -592,7 +625,7 @@ const MyApp = StackNavigator ({
     headerTintColor: 'black'
   },
 
-},)
+}, {initialRouteName: 'splash'})
 
 const NavStyle = StyleSheet.create({
   icon: {
@@ -611,8 +644,8 @@ const Home = StyleSheet.create({
 
 const userStyles = StyleSheet.create({
   userIcon:{
-    height: 70,
-    width: 70
+    height: 50,
+    width: 50
   },
   userName:{
     display: 'flex',
