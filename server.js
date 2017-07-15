@@ -27,7 +27,7 @@ var validateReq = function(userData) {
 
 // Passport
 app.use(session({
-  secret: process.env.SECRET,
+  secret: 'Secret',
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 app.set('view engine', 'html');
