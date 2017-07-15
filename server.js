@@ -109,8 +109,6 @@ app.post('/register', function(req, res) {
         if(err){
           console.log(err)
         }
-        if(user){
-          res.redirect('/login');
         }
       })
     } else {
