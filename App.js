@@ -152,37 +152,6 @@ class ExploreScreen extends React.Component {
   )
 
 };
-
-<<<<<<< HEAD
-  render() {
-    return (
-      <View>
-        <View style={styles.category}>
-          <Text>good eats</Text>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.categoryRow}>
-              <Image source={require('./images/food1.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/food2.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/food3.jpeg')} style={{width: 125, height: 125}}/>
-            </View>
-          </ScrollView>
-        </View>
-        <View style={styles.category}>
-          <Text>explore views</Text>
-          <View style={styles.categoryRow}>
-          <Image source={require('./images/views1.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/views2.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/views3.jpeg')} style={{width: 125, height: 125}}/>
-          </View>
-        </View>
-        <View style={styles.category}>
-          <Text>shop style</Text>
-          <View style={styles.categoryRow}>
-          <Image source={require('./images/shop1.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/shop2.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/shop3.jpeg')} style={{width: 125, height: 125}}/>
-          </View>
-=======
 render() {
   return (
     <ScrollView>
@@ -191,9 +160,9 @@ render() {
           <Text style={ExploreStyles.Category}>Food</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/food1.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/food2.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/food3.jpg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -201,9 +170,9 @@ render() {
           <Text style = {ExploreStyles.Category}>Museums</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/views1.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/views2.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/views3.jpg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -211,12 +180,11 @@ render() {
           <Text style = {ExploreStyles.Category}>Shopping</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
-              <Image source={exampleImg} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/shop1.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/shop2.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/shop3.jpg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
->>>>>>> 8ebac9aa6bbfe7c2a9e0baaa542c88120731a1a4
         </View>
       </View>
     </ScrollView>
@@ -351,7 +319,7 @@ class Post extends React.Component {
         <View style={stdUserDisp.headerDisplay}>
           <View style={stdUserDisp.user}>
             <Image source={this.props.userImage} style={userStyles.userIcon}/>
-            <Text style={userStyles.userName}>username</Text>
+            <Text style={userStyles.userName}>{this.props.username}</Text>
           </View>
           <View style={stdUserDisp.likes}>
             <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
@@ -401,7 +369,7 @@ render() {
   return (
     <ScrollView>
       <Animatable.View animation="fadeInRight" style={Home.container}>
-        <Post navigation={this.props.navigation} userImage={chloeIcon}/><Post userImage={eliseIcon}/>
+        <Post navigation={this.props.navigation} userImage={chloeIcon} username='chloeymoon'/><Post userImage={eliseIcon} username='elisenyang'/>
       </Animatable.View>
     </ScrollView>
   )
@@ -486,14 +454,11 @@ class RegisterScreen extends React.Component {
   }
 }
 
-
-
-class Login extends React.Component {
+class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Login',
     header: null
   }
-
   constructor(props){
     super(props)
     this.state={}
@@ -538,7 +503,7 @@ class Login extends React.Component {
             password: this.state.password
           }))
         } else {
-          this.props.navigation.navigate('login')
+          this.props.navigation.navigate('firstScreen')
         }
       })
       .catch((err) => {
@@ -550,6 +515,7 @@ class Login extends React.Component {
     render() {
       return (
         <View>
+<<<<<<< HEAD
           <View style={loginScreen.logoContainer}>
             <Animatable.Image animation="fadeInDown" style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
             <Animatable.Image animation="fadeInUp" style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
@@ -572,11 +538,56 @@ class Login extends React.Component {
               />
             </View>
             <TouchableOpacity onPress={()=>this.loginClick()}>
+=======
+          <TextInput style={{padding: 10, height: 40}}
+            placeholder="Username"
+          />
+          <TextInput style={{padding: 10, height: 40}}
+            placeholder="Password"
+            secureTextEntry={true}
+          />
+
+        <TouchableOpacity onPress={()=>this.loginClick()}>
+          <Text
+            style={{
+              fontSize: 30,
+            }}>LOGIN</Text>
+          </TouchableOpacity>
+          </View>
+      )
+    }
+}
+
+class FirstScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
+    render() {
+      return (
+        <View>
+        <View style={loginScreen.logoContainer}>
+          <Image style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
+          <Image style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
+        </View>
+
+
+        <View style={loginScreen.quoteContainer}>
+          <Text style={loginScreen.quote}>“And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is
+            essential is invisible to the eye.” </Text>
+            <Text style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Text>
+            <Text style={loginScreen.book}>The Little Prince</Text>
+          </View>
+
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('login')}>
+>>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
               <Text
                 style={{
                   fontSize: 30,
                   color: 'white',
+<<<<<<< HEAD
                   margin: 25,
+=======
+>>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
                 }}>LOGIN</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
@@ -584,6 +595,7 @@ class Login extends React.Component {
                   style={{
                     fontSize: 30,
                     color: 'white',
+<<<<<<< HEAD
                     margin: 25,
                   }}>REGISTER</Text>
                 </TouchableOpacity>
@@ -617,6 +629,10 @@ class Login extends React.Component {
                 <Animatable.Image duration={1500} animation="fadeInDown" style={splashScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
                 <Animatable.Image duration={1500} animation="fadeInUp" style={splashScreen.logo} source={require('./assets/icons/logo-white.png')} />
               </View>
+=======
+                  }}>REGISTER</Text>
+                </TouchableOpacity>
+>>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
             </View>
           )
         }
@@ -713,6 +729,7 @@ class Login extends React.Component {
         }
       })
 
+<<<<<<< HEAD
       const NavStyle = StyleSheet.create({
         icon: {
           width: 30,
@@ -724,6 +741,48 @@ class Login extends React.Component {
         container:{
           display: 'flex',
           alignItems:'center',
+=======
+        componentWillMount() {
+          var navigator = this.props.navigation
+          setTimeout(()=> {this.props.navigation.navigate('firstScreen')
+        }, 2000)
+      }
+      render() {
+        return (
+          <View style={{flex:1, backgroundColor: 'red'}}></View>
+        )
+      }
+    }
+
+    const MyApp = StackNavigator ({
+      splash: {
+        screen: SplashScreen
+      },
+      firstScreen: {
+        screen: FirstScreen
+      },
+      login: {
+        screen: LoginScreen
+      },
+      register: {
+        screen: RegisterScreen
+      },
+      tab: {
+        screen: Tab
+      },
+      Home: {
+        screen: Homepage
+      },
+      PostPage: {
+        screen: PostScreen
+      }
+    },
+    {
+      navigationOptions: {
+        headerTitle: <Image source={require('./assets/icons/logo.png')} style={{width: 150, height:30}}/>,
+        headerStyle: {
+          height: 60,
+>>>>>>> e8d18bc7de6b495e3469d2acf951332947f737d7
           backgroundColor: 'white'
         }
       })
