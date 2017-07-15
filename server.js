@@ -66,7 +66,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
 ));
 
 app.post('/register', function(req, res) {
-    if ((req.body.username) && (req.body.password) && validateReq(req.body.password)) {
       var user = new User({
         username: req.body.username,
         password: req.body.password,
@@ -76,9 +75,7 @@ app.post('/register', function(req, res) {
           console.log(err)
         }
       })
-    } else {
-      res.sendStatus(400)
-    }
+      res.send('true')
   })
 
   app.post('/login', passport.authenticate('local', {
