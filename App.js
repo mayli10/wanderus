@@ -246,6 +246,9 @@ const Tab = TabNavigator({
 
 
 const MyApp = StackNavigator ({
+  Login: {
+    screen: Login
+  },
   tab: {
     screen: Tab
   },
