@@ -87,7 +87,7 @@ app.post('/register', function(req, res) {
   }));
 
   app.get('/login', function(req,res) {
-    res.send('Fail')
+    res.json({"success": "false"})
   })
 
 

@@ -500,7 +500,7 @@ class Login extends React.Component {
       password: this.state.password
   }))
 } else {
-  this.props.navigation.navigate('login')
+  this.props.navigation.navigate('Homepage')
 }
 })
   .catch((err) => {
