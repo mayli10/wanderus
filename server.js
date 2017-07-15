@@ -124,7 +124,7 @@ app.post('/register', function(req, res) {
   }));
 
   app.get('/loginSuccess', function(req,res) {
-    res.send({success: true})
+    res.json({"success": "true"})
   })
 
   // app.get('/homepage')

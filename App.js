@@ -491,14 +491,17 @@ class Login extends React.Component {
       password: this.state.password,
     })
   })
-  .then((response) => {
-    if(response.success) {
+  .then(reponse => response.json())
+  .then((responseJSON) => {
+    if(responseJSON.success) {
     this.props.navigation.navigate('tab');
     AsyncStorage.setItem('user', JSON.stringify ({
       username: this.state.username,
       password: this.state.password
   }))
-  }
+} else {
+  this.props.navigation.navigate('login')
+}
 })
   .catch((err) => {
     /* do something if there was an error with fetching */
