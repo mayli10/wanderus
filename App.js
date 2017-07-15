@@ -34,6 +34,7 @@ class BookmarkScreen extends React.Component {
 }
 
 
+
 class ExploreScreen extends React.Component {
   static navigationOptions = {
     title: 'Explore',
