@@ -293,7 +293,7 @@ class PostScreen extends React.Component {
 
         <ScrollView>
           <View>
-            <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={325} itemWidth={275}>
+            <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={380} itemWidth={320}>
               <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
               <Image source={require('./assets/mock-cover-1.png')} style={PostScreenStyles.image}/>
               <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
@@ -539,7 +539,7 @@ class LoginScreen extends React.Component {
           </View>
 
           <View style={loginScreen.buttonContainer}>
-          <TextInput style={{padding: 10, height: 40, textAlign: 'center'}}
+          <TextInput style={{marginTop: 40, padding: 10, height: 40, textAlign: 'center'}}
             placeholder="USERNAME"
           />
           <TextInput style={{padding: 10, height: 40, textAlign: 'center'}}
@@ -828,16 +828,16 @@ class FirstScreen extends React.Component {
         postContainer:{
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: 'white'
-
+          backgroundColor: 'white',
+          height: '100%'
         },
         infoContainer: {
           display: 'flex',
           padding: 20
         },
         image:{
-          height:275,
-          width:275
+          height:320,
+          width:320
         },
         locationName: {
           fontSize: 20,
