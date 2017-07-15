@@ -282,8 +282,8 @@ class PostScreen extends React.Component {
       <View style={PostScreenStyles.postContainer}>
         <View style={stdUserDisp.headerDisplay}>
           <View style={stdUserDisp.user}>
-            <Image source={require('./assets/icons/mockUser.png')} style={userStyles.userIcon}/>
-            <Text style={userStyles.userName}>username</Text>
+            <Image source={require('./images/chloe.png')} style={userStyles.userIcon}/>
+            <Text style={userStyles.userName}>chloeymoon</Text>
           </View>
           <View style={stdUserDisp.likes}>
             <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
@@ -295,7 +295,7 @@ class PostScreen extends React.Component {
           <View>
             <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={325} itemWidth={275}>
               <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
-              <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
+              <Image source={require('./assets/mock-cover-1.png')} style={PostScreenStyles.image}/>
               <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
             </Carousel>
           </View>
@@ -346,7 +346,7 @@ class Post extends React.Component {
               <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> this.clickImage()}>
-              <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+              <Image source={this.props.postImage} style={postPreview.image}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=> this.clickImage()}>
               <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
@@ -382,7 +382,7 @@ render() {
   return (
     <ScrollView>
       <Animatable.View animation="fadeInRight" style={Home.container}>
-        <Post navigation={this.props.navigation} userImage={chloeIcon} username='chloeymoon'/><Post userImage={eliseIcon} username='elisenyang'/>
+        <Post navigation={this.props.navigation} userImage={chloeIcon} username='chloeymoon' postImage={require('./assets/mock-cover-1.png')}/><Post userImage={eliseIcon} username='elisenyang' postImage={require('./assets/mock-cover-2.png')}/>
       </Animatable.View>
     </ScrollView>
   )
