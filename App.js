@@ -12,8 +12,18 @@ import {
   ScrollView
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
+import * as Animatable from 'react-native-animatable';
 
 class BookmarkScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Explore',
+    tabBarIcon: () => (
+      <Image source={require('./assets/icons/bookmark.png')}
+      style={styles.icon}
+    />
+  )
+
+  };
   render() {
     return (
       <Text>Test</Text>
@@ -23,6 +33,16 @@ class BookmarkScreen extends React.Component {
 
 
 class ExploreScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Explore',
+    tabBarIcon: () => (
+      <Image source={require('./assets/icons/explore.png')}
+      style={styles.icon}
+    />
+  )
+
+  };
+
   render() {
     return (
       <Text>Test</Text>
@@ -33,7 +53,13 @@ class ExploreScreen extends React.Component {
 
 class UserProfile extends React.Component{
   static navigationOptions = {
-    title: 'Profile'
+    title: 'Profile',
+    tabBarIcon: () => (
+      <Image source={require('./assets/icons/user.png')}
+      style={styles.icon}
+    />
+  )
+
   };
   render() {
     return (
@@ -154,20 +180,20 @@ const Tab = TabNavigator({
   Home: {
     screen: Homepage,
   },
-  User: {
-    screen: UserProfile
-  },
   Explore: {
     screen: ExploreScreen
   },
   Bookmark: {
     screen: BookmarkScreen
+  },
+  User: {
+    screen: UserProfile
   }
 },{
   tabBarOptions: {
     style: {
       backgroundColor: '#BDC3C7',
-      height: 40
+      height: 35
     },
     showLabel: false,
   }
@@ -189,8 +215,9 @@ const MyApp = StackNavigator ({
 {
   navigationOptions: {
     headerTitle: <Image source={require('./assets/icons/logo.png')} style={{width: 150, height:30}}/>,
-    style: {
-      height: 25,
+    headerStyle: {
+      height: 60,
+      backgroundColor: 'white'
     }
   },
 
