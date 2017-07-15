@@ -216,7 +216,7 @@ render() {
           </View>
 
           <View>
-            <Text>following</Text>
+            <Image source={require('./assets/icons/mockUser.png')}/>
           </View>
         </View>
 
@@ -625,6 +625,7 @@ const PostScreenStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'white'
+
   },
   infoContainer: {
     display: 'flex',
