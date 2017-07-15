@@ -160,9 +160,12 @@ render() {
           <Text style={ExploreStyles.Category}>Food</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-            <Image source={require('./images/food1.jpg')} style={{width: 125, height: 125}}/>
-            <Image source={require('./images/food2.jpg')} style={{width: 125, height: 125}}/>
-            <Image source={require('./images/food3.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/food1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/food2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/food3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/food1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/food2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/food3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -170,9 +173,12 @@ render() {
           <Text style = {ExploreStyles.Category}>Museums</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-            <Image source={require('./images/views1.jpg')} style={{width: 125, height: 125}}/>
-            <Image source={require('./images/views2.jpg')} style={{width: 125, height: 125}}/>
-            <Image source={require('./images/views3.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/views1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/views2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/views3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/views1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/views2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/views3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -180,9 +186,12 @@ render() {
           <Text style = {ExploreStyles.Category}>Shopping</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-            <Image source={require('./images/shop1.jpg')} style={{width: 125, height: 125}}/>
-            <Image source={require('./images/shop2.jpg')} style={{width: 125, height: 125}}/>
-            <Image source={require('./images/shop3.jpg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/shop1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/shop2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/shop3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/shop1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/shop2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/shop3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
@@ -191,7 +200,6 @@ render() {
   )
 }
 }
-
 
 class UserProfile extends React.Component{
   static navigationOptions = {
