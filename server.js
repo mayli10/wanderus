@@ -119,11 +119,13 @@ app.post('/register', function(req, res) {
   })
 
   app.post('/login', passport.authenticate('local', {
-    successRedirect: '/register',
+    successRedirect: '/loginSuccess',
     failureRedirect: '/login'
   }));
 
-
+  app.get('/loginSuccess', function(req,res) {
+    res.send({success: true})
+  })
 
   // app.get('/homepage')
 

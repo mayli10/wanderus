@@ -9,7 +9,8 @@ import {
   ListView,
   Alert,
   Button,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
@@ -462,6 +463,23 @@ class Login extends React.Component {
     this.state={}
   }
 
+  componentDidMount() {
+    AsyncStorage.getItem('user')
+    .then(result => {
+      var parsedResult = JSON.parse(result);
+      var username = parsedResult.username;
+      var password = parsedResult.password;
+      if (username && password) {
+        this.setState({
+          username: username,
+          password: password
+        })
+        return this.press()
+      }
+    })
+    .catch((err)=> {console.log('Error', err)})
+  }
+
   loginClick() {
     fetch('https://vibrant-bastille-14841.herokuapp.com/login', {
       method: 'POST',
@@ -474,12 +492,14 @@ class Login extends React.Component {
     })
   })
   .then((response) => {
+    if(response.success) {
     this.props.navigation.navigate('tab');
     AsyncStorage.setItem('user', JSON.stringify ({
       username: this.state.username,
       password: this.state.password
   }))
-  })
+  }
+})
   .catch((err) => {
     /* do something if there was an error with fetching */
     console.log('Error', err)
