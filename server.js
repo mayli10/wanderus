@@ -21,14 +21,9 @@ var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI || require('./models/connect');
 mongoose.connect(connect);
 
-var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
-
-REQUIRED_ENV.forEach(function(el) {
-  if (!process.env[el]){
-    console.error("Missing required env var " + el);
-    process.exit(1);
-  }
-});
+var validateReq = function(userData) {
+  return (userData.password === userData.passwordRepeat);
+};
 
 // Passport
 app.use(session({
@@ -71,9 +66,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
 }
 ));
 
-app.use('/', auth(passport));
-app.use('/', routes);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -105,22 +97,32 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/register',
-  failureRedirect: '/login'
-})
 
-app.post('/register', function(req,res) {
-  console.log(req.body)
-  var newUser = new User ({
-    username: req.body.username,
-    password: req.body.password
+
+app.post('/register', function(req, res) {
+    if ((req.body.username) && (req.body.password) && validateReq(req.body.password)) {
+      var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+      })
+      user.save(function(err,user){
+        if(err){
+          console.log(err)
+        }
+        if(user){
+          res.redirect('/login');
+        }
+      })
+    } else {
+      res.sendStatus(400)
+    }
   })
-  newUser.save()
-  console.log(newUser)
-  // newUser.save()
-  res.send('SUCCESS')
-  })
+
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/register',
+    failureRedirect: '/login'
+  }));
+
 
 
   // app.get('/homepage')

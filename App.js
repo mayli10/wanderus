@@ -313,7 +313,7 @@ class Login extends React.Component {
   }
 
   loginClick() {
-    fetch('/login', {
+    fetch('https://vibrant-bastille-14841.herokuapp.com/login', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
