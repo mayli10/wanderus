@@ -179,7 +179,34 @@ render() {
 }
 }
 
-
+class Login extends React.Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
+  render() {
+    return (
+      <Image source={require('./images/login.jpeg')}
+        style={{flex: 1,
+        backgroundColor: 'transparent',
+        width: undefined,
+        height: undefined,
+        alignItems: 'center',
+        justifyContent: 'center'}}>
+      <Text>Login</Text>
+      <TextInput style={{padding: 10, height: 40}}
+          placeholder="Username"
+        />
+        <TextInput style={{padding: 10, height: 40}}
+          placeholder="Password"
+          secureTextEntry={true}
+        />
+        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Home')}>
+          <Text>Tap to Login</Text>
+        </TouchableOpacity>
+      </Image>
+    );
+  }
+}
 
 const Tab = TabNavigator({
   Home: {
@@ -207,6 +234,9 @@ const Tab = TabNavigator({
 
 
 const MyApp = StackNavigator ({
+  Login: {
+    screen: Login
+  },
   tab: {
     screen: Tab
   },
