@@ -30,8 +30,7 @@ app.use(session({
   secret: process.env.SECRET,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
-
-
+app.set('view engine', 'html');
 app.use(passport.initialize());
 app.use(passport.session());
 
