@@ -76,9 +76,6 @@ app.post('/register', function(req, res) {
         }
       })
       res.send('true')
-    } else {
-      res.sendStatus(400)
-    }
   })
 
   app.post('/login', passport.authenticate('local', {
