@@ -96,6 +96,11 @@ app.post('/register', function(req, res) {
     failureRedirect: '/login'
   }));
 
+  app.get('/login', function(req,res) {
+    res.send('Fail')
+  })
+
+
   app.get('/loginSuccess', function(req,res) {
     res.json({"success": "true"})
   })
