@@ -16,7 +16,9 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 class BookmarkScreen extends React.Component {
   render() {
     return (
-      <Text>Test</Text>
+      <View>
+      <Image source={require('./images/DG2015-san-francisco.png')} style={{}}/>
+      </View>
     )
   }
 }
@@ -25,7 +27,34 @@ class BookmarkScreen extends React.Component {
 class ExploreScreen extends React.Component {
   render() {
     return (
-      <Text>Test</Text>
+      <View>
+        <View style={styles.category}>
+          <Text>Food</Text>
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <View style={styles.categoryRow}>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            </View>
+          </ScrollView>
+        </View>
+        <View style={styles.category}>
+          <Text>Museums</Text>
+          <View style={styles.categoryRow}>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          </View>
+        </View>
+        <View style={styles.category}>
+          <Text>Shopping</Text>
+          <View style={styles.categoryRow}>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          </View>
+        </View>
+      </View>
     )
   }
 }
@@ -56,7 +85,9 @@ class UserProfile extends React.Component{
           </View>
           <View>
             <View style={styles.gridRow}>
-            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            <TouchableOpacity onPress={()=> this.props.navigation.navigate('PostPage')}>
+              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            </TouchableOpacity>
             <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
             </View>
             <View style={styles.gridRow}>
@@ -225,6 +256,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     margin: 5
+  },
+  category: {
+
+  },
+  categoryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
   }
 })
 
