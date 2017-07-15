@@ -480,13 +480,10 @@ class RegisterScreen extends React.Component {
   }
 }
 
-
-
-class Login extends React.Component {
+class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Login'
   }
-
   constructor(props){
     super(props)
     this.state={}
@@ -531,7 +528,7 @@ class Login extends React.Component {
             password: this.state.password
           }))
         } else {
-          this.props.navigation.navigate('login')
+          this.props.navigation.navigate('firstScreen')
         }
       })
       .catch((err) => {
@@ -540,6 +537,32 @@ class Login extends React.Component {
       });
     }
 
+    render() {
+      return (
+        <View>
+          <TextInput style={{padding: 10, height: 40}}
+            placeholder="Username"
+          />
+          <TextInput style={{padding: 10, height: 40}}
+            placeholder="Password"
+            secureTextEntry={true}
+          />
+
+        <TouchableOpacity onPress={()=>this.loginClick()}>
+          <Text
+            style={{
+              fontSize: 30,
+            }}>LOGIN</Text>
+          </TouchableOpacity>
+          </View>
+      )
+    }
+}
+
+class FirstScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
     render() {
       return (
         <View>
@@ -555,29 +578,21 @@ class Login extends React.Component {
             <Text style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Text>
             <Text style={loginScreen.book}>The Little Prince</Text>
           </View>
-          <View>
-            <TextInput style={{padding: 10, height: 40}}
-              placeholder="Username"
-            />
-            <TextInput style={{padding: 10, height: 40}}
-              placeholder="Password"
-              secureTextEntry={true}
-            />
-          </View>
-          <TouchableOpacity onPress={()=>this.loginClick()}>
-            <Text
-              style={{
-                fontSize: 30,
-                color: 'white',
-              }}>LOGIN</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
+
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('login')}>
               <Text
                 style={{
                   fontSize: 30,
                   color: 'white',
-                }}>REGISTER</Text>
+                }}>LOGIN</Text>
               </TouchableOpacity>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
+                <Text
+                  style={{
+                    fontSize: 30,
+                    color: 'white',
+                  }}>REGISTER</Text>
+                </TouchableOpacity>
             </View>
           );
         }
@@ -597,7 +612,7 @@ class Login extends React.Component {
 
         componentWillMount() {
           var navigator = this.props.navigation
-          setTimeout(()=> {this.props.navigation.navigate('login')
+          setTimeout(()=> {this.props.navigation.navigate('firstScreen')
         }, 2000)
       }
       render() {
@@ -611,8 +626,11 @@ class Login extends React.Component {
       splash: {
         screen: SplashScreen
       },
+      firstScreen: {
+        screen: FirstScreen
+      },
       login: {
-        screen: Login
+        screen: LoginScreen
       },
       register: {
         screen: RegisterScreen
