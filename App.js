@@ -9,7 +9,8 @@ import {
   ListView,
   Alert,
   Button,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
@@ -204,10 +205,40 @@ render() {
           <Image source={require('./assets/icons/parallax.jpg')}/>
         </View>
       )}>
-      <View style={{ height: 500 }}>
-        <Image source={require('./assets/icons/mockUser.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
-        <Text>Scroll me</Text>
-      </View>
+      <Image source={require('./assets/icons/mockUser.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
+      <ScrollView>
+        <View>
+          <View style={userProfile.UserInfoContainer}>
+            <View style={userProfile.UserInfo}>
+              <Text>following</Text>
+              <Text>145</Text>
+            </View>
+            <View style={userProfile.UserInfo}>
+              <Text>followers</Text>
+              <Text>1542</Text>
+            </View>
+            <View style={userProfile.UserInfo}>
+              <Text>viewed</Text>
+              <Text>5.6k</Text>
+            </View>
+          </View>
+          <View style={{
+              borderBottomColor: 'grey',
+              borderBottomWidth: 0.5 ,
+          }}/>
+          <View style={userProfile.iconContainer}>
+            <Image style={userProfile.icon} source={require('./assets/icons/grid.png')}/>
+            <Image style={userProfile.icon} source={require('./assets/icons/location.png')}/>
+            <Image style={userProfile.icon} source={require('./assets/icons/userTag.png')}/>
+            <Image style={userProfile.icon} source={require('./assets/icons/collection.png')}/>
+          </View>
+        </View>
+        <View style={{
+            borderBottomColor: 'grey',
+            borderBottomWidth: 0.5 ,
+        }}/>
+
+      </ScrollView>
     </ParallaxScrollView>
 
     // <ScrollView>
@@ -331,6 +362,12 @@ class Post extends React.Component {
             </TouchableOpacity>
           </Carousel>
         </View>
+        <View style={{
+            borderBottomColor: 'grey',
+            borderBottomWidth: 0.5 ,
+            marginTop: 20,
+            marginBottom: 10
+        }}/>
       </View>
     )
   }
@@ -380,7 +417,7 @@ const Tab = TabNavigator({
   tabBarOptions: {
     style: {
       backgroundColor: '#BDC3C7',
-      height: 40
+      height: 45
     },
     showLabel: false,
   }
@@ -388,7 +425,150 @@ const Tab = TabNavigator({
 });
 
 
+class RegisterScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Register'
+  };
+    constructor() {
+      super();
+    this.state= {};
+    }
+
+  registerSubmit() {
+    fetch('https://vibrant-bastille-14841.herokuapp.com/register', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+    })
+  })
+  .then((response) => {
+       this.props.navigation.navigate('login')
+    })
+  .catch((err) => {
+    /* do something if there was an error with fetching */
+    console.log('Error', err)
+  });
+    }
+
+  render() {
+    return (
+      <View>
+        <Text>Register</Text>
+        <TextInput style={{padding: 10, height: 40}}
+          placeholder="Enter your username"
+          onChangeText={(text)=> this.setState({username: text})}
+        />
+        <TextInput style={{padding: 10, height: 40}}
+          placeholder="Enter password"
+          secureTextEntry={true} onChangeText={(text)=> this.setState({password: text})}
+        />
+        <TouchableOpacity onPress={()=> {this.registerSubmit()}}>
+          <Text>Submit</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+}
+
+
+
+class Login extends React.Component {
+  static navigationOptions = {
+    title: 'Login'
+  }
+
+  constructor(props){
+    super(props)
+    this.state={}
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('user')
+    .then(result => {
+      var parsedResult = JSON.parse(result);
+      var username = parsedResult.username;
+      var password = parsedResult.password;
+      if (username && password) {
+        this.setState({
+          username: username,
+          password: password
+        })
+        return this.press()
+      }
+    })
+    .catch((err)=> {console.log('Error', err)})
+  }
+
+  loginClick() {
+    fetch('https://vibrant-bastille-14841.herokuapp.com/login', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username: this.state.username,
+      password: this.state.password,
+    })
+  })
+  .then(response => response.json())
+  .then((responseJSON) => {
+    if(responseJSON.success) {
+    this.props.navigation.navigate('tab');
+    AsyncStorage.setItem('user', JSON.stringify ({
+      username: this.state.username,
+      password: this.state.password
+  }))
+} else {
+  this.props.navigation.navigate('login')
+}
+})
+  .catch((err) => {
+    /* do something if there was an error with fetching */
+    console.log('Error', err)
+  });
+  }
+
+  render() {
+    return (
+      <Image source={require('./images/login.jpeg')}
+        style={{
+          flex: 1,
+          backgroundColor: 'transparent',
+          width: undefined,
+          height: undefined,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+      <Text>Login</Text>
+      <TextInput style={{padding: 10, height: 40}}
+          placeholder="Username"
+        />
+        <TextInput style={{padding: 10, height: 40}}
+          placeholder="Password"
+          secureTextEntry={true}
+        />
+        <TouchableOpacity onPress={()=>this.loginClick()}>
+          <Text>Tap to Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
+          <Text>Tap to Register</Text>
+        </TouchableOpacity>
+      </Image>
+    );
+  }
+}
+
 const MyApp = StackNavigator ({
+  login: {
+    screen: Login
+  },
+  register: {
+    screen: RegisterScreen
+  },
   tab: {
     screen: Tab
   },
@@ -474,7 +654,6 @@ const postPreview = StyleSheet.create({
   mainContainer:{
     flex: 1,
     width: '95%',
-    marginBottom: 20,
   },
   Imginfo:{
     display: 'flex',
@@ -491,6 +670,7 @@ const PostScreenStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'white'
+
   },
   infoContainer: {
     display: 'flex',
@@ -541,6 +721,33 @@ const userProfile = StyleSheet.create({
     marginLeft: 'auto',
     marginTop: -35,
     alignItems: 'center'
+  },
+  UserInfoContainer:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    margin: 10
+  },
+  UserInfo:{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  UserIcon:{
+    display:'flex'
+  },
+  iconContainer:{
+    marginTop: 10,
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  icon: {
+    width: 30,
+    height: 30 ,
   }
 })
 
