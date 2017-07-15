@@ -473,21 +473,12 @@ class Login extends React.Component {
       password: this.state.password,
     })
   })
-  .then((response) => response.json())
-  .then((responseJson) => {
-    /* do something with responseJson and go back to the Login view but
-     * make sure to check for responseJson.success! */
-     console.log(responseJson.success)
-     if (responseJson.success) {
-       this.props.navigation.navigate('tab');
-       AsyncStorage.setItem('user', JSON.stringify ({
-         username: this.state.username,
-         password: this.state.password
-       })
-     )
-     } else {
-       this.setState({message: "Login Error"})
-     }
+  .then((response) => {
+    this.props.navigation.navigate('tab');
+    AsyncStorage.setItem('user', JSON.stringify ({
+      username: this.state.username,
+      password: this.state.password
+  }))
   })
   .catch((err) => {
     /* do something if there was an error with fetching */
