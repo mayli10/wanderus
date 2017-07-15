@@ -15,6 +15,26 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
 import Carousel from 'react-native-snap-carousel';
 
+class UploadScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Upload',
+    tabBarIcon: () => (
+      <Image source={require('./assets/icons/upload.png')}
+      style={NavStyle.icon}
+    />
+  )
+
+  };
+  render() {
+    return (
+      <View>
+      <Text>Upload</Text>
+      </View>
+    )
+  }
+}
+
+
 class BookmarkScreen extends React.Component {
   static navigationOptions = {
     title: 'Explore',
@@ -129,7 +149,7 @@ class UserProfile extends React.Component{
   }
 }
 
-
+//Post Screen
 class PostScreen extends React.Component {
   static navigationOptions = {
     title: 'PostScreen'
@@ -142,34 +162,43 @@ class PostScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.postContainer}>
-        <View style={styles.header}>
-          <Text style={{marginRight: 'auto'}}>Username</Text>
-          <Image source={require('./assets/icons/Heart-Dark.png')} style={{width:20, height:20}}/>
+      <View style={PostScreenStyles.postContainer}>
+        <View style={stdUserDisp.headerDisplay}>
+          <View style={stdUserDisp.user}>
+            <Image source={require('./assets/icons/mockUser.png')} style={userStyles.userIcon}/>
+            <Text style={userStyles.userName}>username</Text>
+          </View>
+          <View style={stdUserDisp.likes}>
+            <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
+          <Text style={stdUserDisp.likesText}>145</Text>
+          </View>
         </View>
 
-        <View style={styles.postImages}>
-        <Carousel ref={(carousel)=> {this._carousel = carousel}} sliderWidth={20} itemWidth={200}>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
-        </Carousel>
-        </View>
+        <ScrollView>
         <View>
-          <Text>The Coffee Shop</Text>
-          <Text>Somewhere in SF</Text>
-          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
+          <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={325} itemWidth={275}>
+              <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
+              <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
+              <Image source={require('./images/example_post.jpeg')} style={PostScreenStyles.image}/>
+          </Carousel>
+        </View>
+
+        <View style={PostScreenStyles.infoContainer}>
+          <Text style={PostScreenStyles.locationName}>The Coffee Shop</Text>
+          <Text style={PostScreenStyles.address}>Somewhere in SF</Text>
+          <Text style={PostScreenStyles.caption}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
             quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
             Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
             Duo Reges: constructio interrete. At enim hic etiam dolore.
           </Text>
         </View>
+        </ScrollView>
       </View>
     )
   }
 }
 
-
+//Post
 class Post extends React.Component {
   static navigationOptions = {
     title: 'Post'
@@ -182,21 +211,29 @@ class Post extends React.Component {
     return (
       <View style={postPreview.mainContainer}>
 
-        <View style={homeHead.headerDisplay}>
-          <View style={homeHead.user}>
+        <View style={stdUserDisp.headerDisplay}>
+          <View style={stdUserDisp.user}>
             <Image source={require('./assets/icons/mockUser.png')} style={userStyles.userIcon}/>
             <Text style={userStyles.userName}>username</Text>
           </View>
-          <View style={homeHead.likes}>
+          <View style={stdUserDisp.likes}>
             <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
-          <Text style={homeHead.likesText}>145</Text>
+          <Text style={stdUserDisp.likesText}>145</Text>
           </View>
         </View>
 
         <View style={postPreview.Imginfo}>
-          <TouchableOpacity onPress={()=> this.clickImage()}>
-            <Animatable.Image animation="fadeInUp" source={require('./images/example_post.jpeg')} style={postPreview.image}/>
-          </TouchableOpacity>
+            <Carousel ref={(carousel)=> {this._carousel = carousel}} inactiveSlideOpacity={0.2} firstItem={1} sliderWidth={325} itemWidth={225}>
+              <TouchableOpacity onPress={()=> this.clickImage()}>
+                <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={()=> this.clickImage()}>
+                <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={()=> this.clickImage()}>
+                <Image source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+              </TouchableOpacity>
+            </Carousel>
         </View>
       </View>
     )
@@ -233,6 +270,9 @@ const Tab = TabNavigator({
   },
   Explore: {
     screen: ExploreScreen
+  },
+  Upload: {
+    screen: UploadScreen
   },
   Bookmark: {
     screen: BookmarkScreen
@@ -284,7 +324,8 @@ const NavStyle = StyleSheet.create({
 const Home = StyleSheet.create({
   container:{
     display: 'flex',
-    alignItems:'center'
+    alignItems:'center',
+    backgroundColor: 'white'
   }
 })
 
@@ -304,7 +345,8 @@ const userStyles = StyleSheet.create({
   }
 })
 
-const homeHead = StyleSheet.create({
+
+const stdUserDisp = StyleSheet.create({
   headerDisplay:{
     display: 'flex',
     flexDirection: 'row',
@@ -344,6 +386,31 @@ const postPreview = StyleSheet.create({
   image:{
     height:225,
     width:225
+  }
+})
+const PostScreenStyles = StyleSheet.create({
+  postContainer:{
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'white'
+  },
+  infoContainer: {
+    display: 'flex',
+    padding: 20
+  },
+  image:{
+    height:275,
+    width:275
+  },
+  locationName: {
+    fontSize: 20,
+    marginTop: 10,
+    marginBottom: 10
+  },
+  caption: {
+    marginTop: 10,
+    fontSize: 12,
+    marginBottom: 10
   }
 })
 
