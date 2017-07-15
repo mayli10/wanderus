@@ -27,6 +27,7 @@ const eliseIcon = require('./images/elise.png');
 class UploadScreen extends React.Component {
   static navigationOptions = {
     title: 'Upload',
+    headerLeft: null,
     tabBarIcon: () => (
       <Image source={require('./assets/icons/upload.png')}
       style={NavStyle.icon}
@@ -71,7 +72,8 @@ render() {
 
 class BookmarkScreen extends React.Component {
   static navigationOptions = {
-    title: 'Explore',
+    title: 'Bookmarks',
+    headerLeft: null,
     tabBarIcon: () => (
       <Image source={require('./assets/icons/bookmark.png')}
       style={NavStyle.icon}
@@ -142,6 +144,7 @@ const BookmarkStyles = StyleSheet.create({
 class ExploreScreen extends React.Component {
   static navigationOptions = {
     title: 'Explore',
+    headerLeft: null,
     tabBarIcon: () => (
       <Image source={require('./assets/icons/explore.png')}
       style={NavStyle.icon}
@@ -194,6 +197,7 @@ render() {
 class UserProfile extends React.Component{
   static navigationOptions = {
     title: 'Profile',
+    headerLeft: null,
     tabBarIcon: () => (
       <Image source={require('./assets/icons/user.png')}
       style={NavStyle.icon}
@@ -246,38 +250,6 @@ render() {
 
       </ScrollView>
     </ParallaxScrollView>
-
-    // <ScrollView>
-    //   <View style={styles.profileContainer}>
-    //     <View style={styles.userInfo}>
-    //       <Text>User pic here!!</Text>
-    //       <Text>Username</Text>
-    //       <Text>Followers, Following, Views</Text>
-    //       <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
-    //         quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
-    //         Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
-    //         Duo Reges: constructio interrete. At enim hic etiam dolore.
-    //       </Text>
-    //     </View>
-    //     <View style={styles.buttonBar}>
-    //       <Image source={require('./assets/icons/Location-Icon.png')} style={{width:30, height:30}}/>
-    //       <Image source={require('./assets/icons/User-Tag-Icon.png')} style={{width:30, height:30}}/>
-    //       <Image source={require('./assets/icons/Collections-Icon.png')} style={{width:30, height:30}}/>
-    //     </View>
-    //     <View>
-    //       <View style={styles.gridRow}>
-    //         <TouchableOpacity onPress={()=> this.props.navigation.navigate('PostPage')}>
-    //           <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-    //         </TouchableOpacity>
-    //         <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-    //       </View>
-    //       <View style={styles.gridRow}>
-    //         <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-    //         <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-    //       </View>
-    //     </View>
-    //   </View>
-    // </ScrollView>
   )
 }
 }
@@ -285,7 +257,8 @@ render() {
 //Post Screen
 class PostScreen extends React.Component {
   static navigationOptions = {
-    title: 'PostScreen'
+    title: 'PostScreen',
+    headerLeft: null,
   };
 
   constructor(props) {
@@ -383,6 +356,7 @@ class Post extends React.Component {
 class Homepage extends React.Component {
   static navigationOptions = {
     title: 'Home',
+    headerLeft: null,
     tabBarIcon: () => (
       <Image source={require('./assets/icons/home.png')}
       style={NavStyle.icon}
@@ -433,7 +407,8 @@ const Tab = TabNavigator({
 
 class RegisterScreen extends React.Component {
   static navigationOptions = {
-    title: 'Register'
+    title: 'Register',
+    header: null
   };
   constructor() {
     super();
@@ -484,7 +459,8 @@ class RegisterScreen extends React.Component {
 
 class Login extends React.Component {
   static navigationOptions = {
-    title: 'Login'
+    title: 'Login',
+    header: null
   }
 
   constructor(props){
@@ -543,357 +519,383 @@ class Login extends React.Component {
     render() {
       return (
         <View>
-        <View style={loginScreen.logoContainer}>
-          <Image style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
-          <Image style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
-        </View>
+          <View style={loginScreen.logoContainer}>
+            <Animatable.Image animation="fadeInDown" style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
+            <Animatable.Image animation="fadeInUp" style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
+          </View>
 
 
-        <View style={loginScreen.quoteContainer}>
-          <Text style={loginScreen.quote}>“And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is
-            essential is invisible to the eye.” </Text>
-            <Text style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Text>
-            <Text style={loginScreen.book}>The Little Prince</Text>
-          </View>
-          <View>
-            <TextInput style={{padding: 10, height: 40}}
-              placeholder="Username"
-            />
-            <TextInput style={{padding: 10, height: 40}}
-              placeholder="Password"
-              secureTextEntry={true}
-            />
-          </View>
-          <TouchableOpacity onPress={()=>this.loginClick()}>
-            <Text
-              style={{
-                fontSize: 30,
-                color: 'white',
-              }}>LOGIN</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
+          <View style={loginScreen.quoteContainer}>
+            <Animatable.Text animation="fadeInUp" delay="1000" style={loginScreen.quote}>“And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is
+              essential is invisible to the eye.” </Animatable.Text>
+              <Animatable.Text animation="fadeInUp" delay="1000" style={loginScreen.speaker}>ANTOINE DE SAINT-EXUPERY</Animatable.Text>
+              <Animatable.Text animation="fadeInUp" delay="1000" style={loginScreen.book}>The Little Prince</Animatable.Text>
+            </View>
+            <View>
+              <TextInput style={{padding: 10, height: 40}}
+                placeholder="Username"
+              />
+              <TextInput style={{padding: 10, height: 40}}
+                placeholder="Password"
+                secureTextEntry={true}
+              />
+            </View>
+            <TouchableOpacity onPress={()=>this.loginClick()}>
               <Text
                 style={{
                   fontSize: 30,
                   color: 'white',
-                }}>REGISTER</Text>
+                }}>LOGIN</Text>
               </TouchableOpacity>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate('register')}>
+                <Text
+                  style={{
+                    fontSize: 30,
+                    color: 'white',
+                  }}>REGISTER</Text>
+                </TouchableOpacity>
+              </View>
+            );
+          }
+        }
+
+
+        class SplashScreen extends React.Component {
+
+          static navigationOptions = {
+            title: 'Splash',
+            header: null,
+          }
+
+          constructor(props){
+            super(props)
+            this.state={}
+          }
+
+          componentWillMount() {
+            var navigator = this.props.navigation
+            setTimeout(()=> {this.props.navigation.navigate('login')
+          }, 4000)
+        }
+        render() {
+          return (
+            <View style={{flex:1, backgroundColor: '#C6C6C6'}}>
+              <View style={splashScreen.logoContainer}>
+                <Animatable.Image duration="1000" animation="fadeInDown" style={splashScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
+                <Animatable.Image duration="1000" animation="fadeInUp" style={splashScreen.logo} source={require('./assets/icons/logo-white.png')} />
+              </View>
             </View>
-          );
+          )
         }
       }
 
+      const MyApp = StackNavigator ({
+        splash: {
+          screen: SplashScreen
+        },
+        login: {
+          screen: Login
+        },
+        register: {
+          screen: RegisterScreen
+        },
+        tab: {
+          screen: Tab
+        },
+        Home: {
+          screen: Homepage
+        },
+        PostPage: {
+          screen: PostScreen
+        }
+      },
+      {
+        navigationOptions: {
+          headerTitle: <Image source={require('./assets/icons/logo.png')} style={{width: 150, height:30}}/>,
+          headerStyle: {
+            height: 60,
+            backgroundColor: 'white'
+          },
+          headerBackTitle: null,
+          headerTintColor: 'black'
+        },
 
-      class SplashScreen extends React.Component {
+      }, {initialRouteName: 'splash'})
 
-        static navigationOptions = {
-          title: 'Splash'
+      const splashScreen = StyleSheet.create({
+        logoContainer:{
+          marginTop: '60%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
+        },
+        squareLogo:{
+          height: 100,
+          width: 100,
+        },
+        logo:{
+          width: 250,
+          height: 50
         }
 
-        constructor(props){
-          super(props)
-          this.state={}
+      })
+
+      const loginScreen = StyleSheet.create({
+        logoContainer:{
+          marginTop: '25%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
+        },
+        squareLogo:{
+          height: 50,
+          width: 50,
+        },
+        logo:{
+          width: 250,
+          height: 50
+        },
+        quoteContainer:{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center'
+        },
+        quote:{
+          textAlign: 'center',
+          padding: 25,
+          color: 'white',
+          fontSize: 20,
+        },
+        speaker:{
+          color: 'white',
+          fontSize: 16
+        },
+        book:{
+          color: 'white',
+          fontSize: 14,
+          fontStyle: 'italic'
         }
+      })
 
-        componentWillMount() {
-          var navigator = this.props.navigation
-          setTimeout(()=> {this.props.navigation.navigate('login')
-        }, 2000)
-      }
-      render() {
-        return (
-          <View style={{flex:1, backgroundColor: 'red'}}></View>
-        )
-      }
-    }
+      const NavStyle = StyleSheet.create({
+        icon: {
+          width: 30,
+          height: 30 ,
+        }
+      })
 
-    const MyApp = StackNavigator ({
-      splash: {
-        screen: SplashScreen
-      },
-      login: {
-        screen: Login
-      },
-      register: {
-        screen: RegisterScreen
-      },
-      tab: {
-        screen: Tab
-      },
-      Home: {
-        screen: Homepage
-      },
-      PostPage: {
-        screen: PostScreen
-      }
-    },
-    {
-      navigationOptions: {
-        headerTitle: <Image source={require('./assets/icons/logo.png')} style={{width: 150, height:30}}/>,
-        headerStyle: {
-          height: 60,
+      const Home = StyleSheet.create({
+        container:{
+          display: 'flex',
+          alignItems:'center',
+          backgroundColor: 'white'
+        }
+      })
+
+      const userStyles = StyleSheet.create({
+        userIcon:{
+          height: 50,
+          width: 50
+        },
+        userName:{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        likeIcon:{
+          height: 30,
+          width: 30
+        }
+      })
+
+
+      const stdUserDisp = StyleSheet.create({
+        headerDisplay:{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        },
+        user:{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        },
+        likes:{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginRight: 10,
+        },
+        likesText:{
+          fontSize: 10,
+          color: '#6C6C6C'
+        }
+      })
+
+      const postPreview = StyleSheet.create({
+        mainContainer:{
+          flex: 1,
+          width: '95%',
+        },
+        Imginfo:{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        },
+        image:{
+          height:225,
+          width:225
+        }
+      })
+      const PostScreenStyles = StyleSheet.create({
+        postContainer:{
+          display: 'flex',
+          flexDirection: 'column',
+          backgroundColor: 'white'
+
+        },
+        infoContainer: {
+          display: 'flex',
+          padding: 20
+        },
+        image:{
+          height:275,
+          width:275
+        },
+        locationName: {
+          fontSize: 20,
+          marginTop: 10,
+          marginBottom: 10
+        },
+        caption: {
+          marginTop: 10,
+          fontSize: 12,
+          marginBottom: 10
+        }
+      })
+
+      const ExploreStyles = StyleSheet.create({
+        exploreContainer:{
+          display: 'flex',
+          flexDirection: 'column',
           backgroundColor: 'white'
         },
-        headerBackTitle: null,
-        headerTintColor: 'black'
-      },
+        Category:{
+          marginTop: 25,
+          marginBottom: 25,
+          fontSize: 15,
+          textAlign: 'center'
+        },
+        categoryRow:{
+          flexDirection: 'row',
+          justifyContent: 'space-around'
+        }
+      })
 
-    }, {initialRouteName: 'splash'})
-
-         const loginScreen = StyleSheet.create({
-              logoContainer:{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                    justifyContent: 'center'
-                  },
-                  squareLogo:{
-                      height: 50,
-                      width: 50,
-                    },
-                    logo:{
-                        width: 250,
-                        height: 50
-                      },
-                      quoteContainer:{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        },
-                        quote:{
-                            textAlign: 'center',
-                            padding: 25,
-                            color: 'white',
-                            fontSize: 20,
-                          },
-                          speaker:{
-                              color: 'white',
-                              fontSize: 16
-                            },
-                            book:{
-                                color: 'white',
-                                fontSize: 14,
-                                fontStyle: 'italic'
-                           }
-                          })
-
-                    const NavStyle = StyleSheet.create({
-                      icon: {
-                        width: 30,
-                        height: 30 ,
-                      }
-                    })
-
-                    const Home = StyleSheet.create({
-                      container:{
-                        display: 'flex',
-                        alignItems:'center',
-                        backgroundColor: 'white'
-                      }
-                    })
-
-                    const userStyles = StyleSheet.create({
-                      userIcon:{
-                        height: 50,
-                        width: 50
-                      },
-                      userName:{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      },
-                      likeIcon:{
-                        height: 30,
-                        width: 30
-                      }
-                    })
+      const userProfile = StyleSheet.create({
+        container:{
+          display:'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        },
+        userIcon: {
+          marginRight: 'auto',
+          marginLeft: 'auto',
+          marginTop: -35,
+          alignItems: 'center'
+        },
+        UserInfoContainer:{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          margin: 10
+        },
+        UserInfo:{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+        },
+        UserIcon:{
+          display:'flex'
+        },
+        iconContainer:{
+          marginTop: 10,
+          marginBottom: 10,
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-around'
+        },
+        icon: {
+          width: 30,
+          height: 30 ,
+        }
+      })
 
 
-                    const stdUserDisp = StyleSheet.create({
-                      headerDisplay:{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center'
-                      },
-                      user:{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center'
-                      },
-                      likes:{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginRight: 10,
-                      },
-                      likesText:{
-                        fontSize: 10,
-                        color: '#6C6C6C'
-                      }
-                    })
+      const styles = StyleSheet.create({
+        icon: {
+          width: 30,
+          height: 30 ,
+        },
+        container: {
+          flex:1,
+          marginTop: 40,
+          alignItems: 'center'
+        },
+        postContainer: {
+          flex:1,
+          margin: 20,
+        },
+        post: {
+          flex: 1,
+          margin: 5,
+          width: 300,
+          borderWidth: 2,
+          padding: 3
+        },
+        header: {
+          flexDirection: 'row',
+          padding: 4,
+          justifyContent: 'flex-end'
+        },
+        postImages: {
+          flexDirection: 'row',
+          justifyContent: 'center'
+        },
+        profileContainer: {
+          flex:1,
+          margin: 20
+        },
+        userInfo: {
 
-                    const postPreview = StyleSheet.create({
-                      mainContainer:{
-                        flex: 1,
-                        width: '95%',
-                      },
-                      Imginfo:{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                      },
-                      image:{
-                        height:225,
-                        width:225
-                      }
-                    })
-                    const PostScreenStyles = StyleSheet.create({
-                      postContainer:{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        backgroundColor: 'white'
+        },
+        buttonBar: {
+          flexDirection: 'row',
+          borderWidth: 2,
+          justifyContent: 'space-around'
+        },
+        grid: {
+        },
+        gridRow: {
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          margin: 5
+        },
+        category: {
 
-                      },
-                      infoContainer: {
-                        display: 'flex',
-                        padding: 20
-                      },
-                      image:{
-                        height:275,
-                        width:275
-                      },
-                      locationName: {
-                        fontSize: 20,
-                        marginTop: 10,
-                        marginBottom: 10
-                      },
-                      caption: {
-                        marginTop: 10,
-                        fontSize: 12,
-                        marginBottom: 10
-                      }
-                    })
+        },
+        categoryRow: {
+          flexDirection: 'row',
+          justifyContent: 'space-around'
+        }
+      })
 
-                    const ExploreStyles = StyleSheet.create({
-                      exploreContainer:{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        backgroundColor: 'white'
-                      },
-                      Category:{
-                        marginTop: 25,
-                        marginBottom: 25,
-                        fontSize: 15,
-                        textAlign: 'center'
-                      },
-                      categoryRow:{
-                        flexDirection: 'row',
-                        justifyContent: 'space-around'
-                      }
-                    })
-
-                    const userProfile = StyleSheet.create({
-                      container:{
-                        display:'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center'
-                      },
-                      userIcon: {
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                        marginTop: -35,
-                        alignItems: 'center'
-                      },
-                      UserInfoContainer:{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'space-around',
-                        margin: 10
-                      },
-                      UserInfo:{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                      },
-                      UserIcon:{
-                        display:'flex'
-                      },
-                      iconContainer:{
-                        marginTop: 10,
-                        marginBottom: 10,
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'space-around'
-                      },
-                      icon: {
-                        width: 30,
-                        height: 30 ,
-                      }
-                    })
-
-
-                    const styles = StyleSheet.create({
-                      icon: {
-                        width: 30,
-                        height: 30 ,
-                      },
-                      container: {
-                        flex:1,
-                        marginTop: 40,
-                        alignItems: 'center'
-                      },
-                      postContainer: {
-                        flex:1,
-                        margin: 20,
-                      },
-                      post: {
-                        flex: 1,
-                        margin: 5,
-                        width: 300,
-                        borderWidth: 2,
-                        padding: 3
-                      },
-                      header: {
-                        flexDirection: 'row',
-                        padding: 4,
-                        justifyContent: 'flex-end'
-                      },
-                      postImages: {
-                        flexDirection: 'row',
-                        justifyContent: 'center'
-                      },
-                      profileContainer: {
-                        flex:1,
-                        margin: 20
-                      },
-                      userInfo: {
-
-                      },
-                      buttonBar: {
-                        flexDirection: 'row',
-                        borderWidth: 2,
-                        justifyContent: 'space-around'
-                      },
-                      grid: {
-                      },
-                      gridRow: {
-                        flexDirection: 'row',
-                        justifyContent: 'space-around',
-                        margin: 5
-                      },
-                      category: {
-
-                      },
-                      categoryRow: {
-                        flexDirection: 'row',
-                        justifyContent: 'space-around'
-                      }
-                    })
-
-                    export default MyApp;
+      export default MyApp;
