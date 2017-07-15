@@ -13,6 +13,23 @@ import {
 } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
+class BookmarkScreen extends React.Component {
+  render() {
+    return (
+      <Text>Test</Text>
+    )
+  }
+}
+
+
+class ExploreScreen extends React.Component {
+  render() {
+    return (
+      <Text>Test</Text>
+    )
+  }
+}
+
 
 class UserProfile extends React.Component{
   static navigationOptions = {
@@ -20,7 +37,35 @@ class UserProfile extends React.Component{
   };
   render() {
     return (
-      <Text>HI</Text>
+      <ScrollView>
+        <View style={styles.profileContainer}>
+          <View style={styles.userInfo}>
+            <Text>User pic here!!</Text>
+            <Text>Username</Text>
+            <Text>Followers, Following, Views</Text>
+            <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
+              quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
+              Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
+              Duo Reges: constructio interrete. At enim hic etiam dolore.
+            </Text>
+          </View>
+          <View style={styles.buttonBar}>
+            <Image source={require('./assets/icons/Location-Icon.png')} style={{width:30, height:30}}/>
+            <Image source={require('./assets/icons/User-Tag-Icon.png')} style={{width:30, height:30}}/>
+            <Image source={require('./assets/icons/Collections-Icon.png')} style={{width:30, height:30}}/>
+          </View>
+          <View>
+            <View style={styles.gridRow}>
+            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            </View>
+            <View style={styles.gridRow}>
+            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     )
   }
 }
@@ -38,7 +83,24 @@ class PostScreen extends React.Component {
 
   render() {
     return (
-      <View><Text>YO</Text></View>
+      <View style={styles.postContainer}>
+        <View style={styles.header}>
+          <Text style={{marginRight: 'auto'}}>Username</Text>
+          <Image source={require('./assets/icons/Heart-Dark.png')} style={{width:20, height:20}}/>
+        </View>
+        <View style={styles.postImages}>
+          <Image source={require('./images/example_post.jpeg')} style={{width: 200, height: 200}}/>
+        </View>
+        <View>
+          <Text>The Coffee Shop</Text>
+          <Text>Somewhere in SF</Text>
+          <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tu
+            quidem reddes; Quantum Aristoxeni ingenium consumptum videmus in musicis?
+            Quae est igitur causa istarum angustiarum? Hic ambiguo ludimur.
+            Duo Reges: constructio interrete. At enim hic etiam dolore.
+          </Text>
+        </View>
+      </View>
     )
   }
 }
@@ -94,6 +156,12 @@ const Tab = TabNavigator({
   },
   User: {
     screen: UserProfile
+  },
+  Explore: {
+    screen: ExploreScreen
+  },
+  Bookmark: {
+    screen: BookmarkScreen
   }
 });
 
@@ -120,6 +188,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: 'center'
   },
+  postContainer: {
+    flex:1,
+    margin: 20,
+  },
   post: {
     flex: 1,
     margin: 5,
@@ -134,6 +206,25 @@ const styles = StyleSheet.create({
   },
   postImages: {
     alignItems: 'center'
+  },
+  profileContainer: {
+    flex:1,
+    margin: 20
+  },
+  userInfo: {
+
+  },
+  buttonBar: {
+    flexDirection: 'row',
+    borderWidth: 2,
+    justifyContent: 'space-around'
+  },
+  grid: {
+  },
+  gridRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    margin: 5
   }
 })
 
