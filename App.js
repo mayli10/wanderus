@@ -98,6 +98,12 @@ render() {
           <View>
             <Image source={require('./images/london.jpg')} style={BookmarkStyles.post}/>
           </View>
+          <View>
+            <Image source={require('./images/ny.jpg')} style={BookmarkStyles.post}/>
+          </View>
+          <View>
+            <Image source={require('./images/sf.jpg')} style={BookmarkStyles.post}/>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -132,46 +138,67 @@ class ExploreScreen extends React.Component {
 render() {
   return (
     <ScrollView>
+      <TextInput style={{padding: 10, height: 30, textAlign: 'center'}}
+        placeholder="Search"
+      />
       <View style={ExploreStyles.exploreContainer}>
-        <View>
+        <View style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 0.5 ,
+          marginTop: 5,
+          marginBottom: 5
+        }}/>
+        <Animatable.View>
           <Text style={ExploreStyles.Category}>Food</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-            <Image source={require('./images/food1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/food2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/food3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/food1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/food2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/food3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/food1.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/food2.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/food3.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/food1.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/food2.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/food3.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
             </View>
           </ScrollView>
-        </View>
-        <View>
+        </Animatable.View>
+        <View style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 0.5 ,
+          marginTop: 5,
+          marginBottom: 5
+        }}/>
+        <Animatable.View  animation="fadeInUp">
           <Text style = {ExploreStyles.Category}>Museums</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-            <Image source={require('./images/views1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/views2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/views3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/views1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/views2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/views3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            </View>
+            <Image source={require('./images/views1.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/views2.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/views3.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/views1.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/views2.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/views3.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+          </View>
           </ScrollView>
-        </View>
-        <View >
+        </Animatable.View>
+        <View style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 0.5 ,
+          marginTop: 10,
+          marginBottom: 5
+        }}/>
+        <Animatable.View animation="fadeInUp">
           <Text style = {ExploreStyles.Category}>Shopping</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={ExploreStyles.categoryRow}>
-            <Image source={require('./images/shop1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/shop2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/shop3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/shop1.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/shop2.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
-            <Image source={require('./images/shop3.jpg')} style={{marginLeft:2, width: 125, height: 125}}/>
+            <Image source={require('./images/shop1.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/shop2.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/shop3.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/shop1.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/shop2.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
+            <Image source={require('./images/shop3.jpg')} style={{marginLeft:2, width: 150, height: 150}}/>
             </View>
           </ScrollView>
-        </View>
+        </Animatable.View>
       </View>
     </ScrollView>
   )
@@ -381,7 +408,8 @@ constructor(props) {
 render() {
   return (
     <ScrollView>
-      <Animatable.View animation="fadeInRight" style={Home.container}>
+      <Animatable.View style={Home.container}>
+        <Post navigation={this.props.navigation} userImage={chloeIcon} username='chloeymoon' postImage={require('./assets/mock-cover-1.png')}/><Post userImage={eliseIcon} username='elisenyang' postImage={require('./assets/mock-cover-2.png')}/>
         <Post navigation={this.props.navigation} userImage={chloeIcon} username='chloeymoon' postImage={require('./assets/mock-cover-1.png')}/><Post userImage={eliseIcon} username='elisenyang' postImage={require('./assets/mock-cover-2.png')}/>
       </Animatable.View>
     </ScrollView>
@@ -829,7 +857,9 @@ class FirstScreen extends React.Component {
           display: 'flex',
           flexDirection: 'column',
           backgroundColor: 'white',
-          height: '100%'
+          height: '100%',
+          paddingTop: 15,
+          paddingBottom: 15
         },
         infoContainer: {
           display: 'flex',
@@ -858,8 +888,8 @@ class FirstScreen extends React.Component {
           backgroundColor: 'white'
         },
         Category:{
-          marginTop: 25,
-          marginBottom: 25,
+          marginTop: 10,
+          marginBottom: 10,
           fontSize: 15,
           textAlign: 'center'
         },
