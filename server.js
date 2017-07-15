@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import express from 'express';
 import path from 'path';
 import logger from 'morgan';
@@ -98,7 +98,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
-=======
 var express = require('express');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
@@ -109,7 +108,6 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 const app = express()
->>>>>>> 8ebac9aa6bbfe7c2a9e0baaa542c88120731a1a4
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
