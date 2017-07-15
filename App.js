@@ -114,31 +114,8 @@ const BookmarkStyles = StyleSheet.create({
     width: '100%'
   },
   background: {
-    backgroundColor: 'white',
-    // flex: 1,
-    // display: 'flex',
-    // flexDirection: 'column',
-    // flexWrap: 'wrap',
-    // justifyContent: 'flext-start'
+    backgroundColor: 'white'
   }
-  // infoContainer: {
-  //   display: 'flex',
-  //   padding: 20
-  // },
-  // image:{
-  //   height:275,
-  //   width:275
-  // },
-  // locationName: {
-  //   fontSize: 20,
-  //   marginTop: 10,
-  //   marginBottom: 10
-  // },
-  // caption: {
-  //   marginTop: 10,
-  //   fontSize: 12,
-  //   marginBottom: 10
-  // }
 })
 
 class ExploreScreen extends React.Component {
@@ -217,6 +194,9 @@ render() {
       <Image source={require('./assets/icons/mockUser.png')} style={[userStyles.userIcon,userProfile.userIcon]}/>
       <ScrollView>
         <View>
+          <View style={userProfile.UserInfoContainer}>
+            <Text style={{fontSize: 18}}>May Li</Text>
+          </View>
           <View style={userProfile.UserInfoContainer}>
             <View style={userProfile.UserInfo}>
               <Text>following</Text>
@@ -305,7 +285,8 @@ class PostScreen extends React.Component {
 //Post
 class Post extends React.Component {
   static navigationOptions = {
-    title: 'Post'
+    title: 'Post',
+    headerTintColor: '#C6C6C6'
   }
 
   clickImage() {
@@ -446,8 +427,17 @@ class RegisterScreen extends React.Component {
           secureTextEntry={true} onChangeText={(text)=> this.setState({password: text})}
         />
         <TouchableOpacity onPress={()=> {this.registerSubmit()}}>
-          <Text>Submit</Text>
-        </TouchableOpacity>
+          <Animatable.Text animation="fadeInUp" delay={1000}
+            style={{
+              fontSize: 24,
+              color: 'white',
+              width: 150,
+              padding: 15,
+              borderWidth: 2,
+              borderColor: 'white',
+              textAlign: 'center'
+            }}>SUBMIT</Animatable.Text>
+          </TouchableOpacity>
       </View>
     )
   }
@@ -509,20 +499,34 @@ class LoginScreen extends React.Component {
     }
     render() {
       return (
-        <View>
-          <TextInput style={{padding: 10, height: 40}}
-            placeholder="Username"
+        <View style={{backgroundColor: '#C6C6C6', height: '100%'}}>
+          <View style={loginScreen.logoContainer}>
+            <Animatable.Image duration={1500} animation="fadeInDown" style={loginScreen.squareLogo} source={require('./assets/icons/logo-white-square.png')}/>
+            <Animatable.Image duration={1500} animation="fadeInUp" style={loginScreen.logo} source={require('./assets/icons/logo-white.png')} />
+          </View>
+
+          <View style={loginScreen.buttonContainer}>
+          <TextInput style={{padding: 10, height: 40, textAlign: 'center'}}
+            placeholder="USERNAME"
           />
-          <TextInput style={{padding: 10, height: 40}}
-            placeholder="Password"
+          <TextInput style={{padding: 10, height: 40, textAlign: 'center'}}
+            placeholder="PASSWORD"
             secureTextEntry={true}
           />
-        <TouchableOpacity onPress={()=>this.loginClick()}>
-          <Text
-            style={{
-              fontSize: 24,
-            }}>LOGIN</Text>
-          </TouchableOpacity>
+          <TouchableOpacity onPress={()=> {this.loginClick()}}>
+            <Animatable.Text animation="fadeInUp" delay={1000}
+              style={{
+                marginTop: 15,
+                fontSize: 24,
+                color: 'white',
+                width: 150,
+                padding: 10,
+                borderWidth: 2,
+                borderColor: 'white',
+                textAlign: 'center'
+              }}>LOGIN</Animatable.Text>
+            </TouchableOpacity>
+          </View>
           </View>
       )
     }
@@ -552,9 +556,9 @@ class FirstScreen extends React.Component {
                 style={{
                   fontSize: 24,
                   color: 'white',
-                  padding: 15,
+                  padding: 10,
                   width: 150,
-                  borderWidth: 1,
+                  borderWidth: 2,
                   borderColor: 'white',
                   marginBottom: 10,
                   textAlign: 'center'
@@ -566,7 +570,7 @@ class FirstScreen extends React.Component {
                     fontSize: 24,
                     color: 'white',
                     width: 150,
-                    padding: 15,
+                    padding: 10,
                     borderWidth: 2,
                     borderColor: 'white',
                     textAlign: 'center'
