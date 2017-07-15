@@ -1,10 +1,135 @@
-const express = require('express')
+var express = require('express');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var path = require('path');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 const app = express()
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+var models = require('./models/models')
+var User = models.User;
+
+
+var mongoose = require('mongoose');
+var connect = process.env.MONGODB_URI || require('./models/connect');
+mongoose.connect(connect);
+
+var validateReq = function(userData) {
+  return (userData.password === userData.passwordRepeat);
+};
+
+// Passport
+app.use(session({
+  secret: process.env.SECRET,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  models.User.findById(id, done);
+});
+
+// passport strategy
+passport.use(new LocalStrategy(function(username, password, done) {
+  // Find the user with the given username
+  models.User.findOne({ username: username }, function (err, user) {
+    // if there's an error, finish trying to authenticate (auth failed)
+    if (err) {
+      console.error('!!!! Error fetching user in LocalStrategy', err);
+      return done(err);
+    }
+    // if no user present, auth failed
+    if (!user) {
+      return done(null, false, { message: '!!! Incorrect username.' });
+    }
+    // if passwords do not match, auth failed
+    if (user.password !== password) {
+      return done(null, false, { message: '!!! Incorrect password.' });
+    }
+    // auth has has succeeded
+    return done(null, user);
+  });
+}
+));
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
+
+
+
+app.post('/register', function(req, res) {
+    if ((req.body.username) && (req.body.password) && validateReq(req.body.password)) {
+      var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+      })
+      user.save(function(err,user){
+        if(err){
+          console.log(err)
+        }
+        if(user){
+          res.redirect('/login');
+        }
+      })
+    } else {
+      res.sendStatus(400)
+    }
+  })
+
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/register',
+    failureRedirect: '/login'
+  }));
+
+
+
+  // app.get('/homepage')
+
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log('Example app listening on:', port)
 })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-})
+module.exports = app;
