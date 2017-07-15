@@ -20,7 +20,7 @@ class BookmarkScreen extends React.Component {
     title: 'Explore',
     tabBarIcon: () => (
       <Image source={require('./assets/icons/bookmark.png')}
-      style={styles.icon}
+      style={NavStyle.icon}
     />
   )
 
@@ -40,7 +40,7 @@ class ExploreScreen extends React.Component {
     title: 'Explore',
     tabBarIcon: () => (
       <Image source={require('./assets/icons/explore.png')}
-      style={styles.icon}
+      style={NavStyle.icon}
     />
   )
 
@@ -86,7 +86,7 @@ class UserProfile extends React.Component{
     title: 'Profile',
     tabBarIcon: () => (
       <Image source={require('./assets/icons/user.png')}
-      style={styles.icon}
+      style={NavStyle.icon}
     />
   )
 
@@ -179,25 +179,36 @@ class Post extends React.Component {
   }
   render () {
     return (
-      <View style={styles.post}>
-        <View style={styles.header}><Text style={{marginRight: 'auto'}}>Username</Text><Image source={require('./assets/icons/Heart-Dark.png')} style={{width:20, height:20}}/></View>
-        <View style={styles.postImages}><TouchableOpacity onPress={()=> this.clickImage()}><Image source={require('./images/example_post.jpeg')}
-        style={{width: 200, height: 200}}/></TouchableOpacity></View>
+      <View style={postPreview.mainContainer}>
+
+        <View style={homeHead.headerDisplay}>
+          <View style={homeHead.user}>
+            <Image source={require('./assets/icons/mockUser.png')} style={userStyles.userIcon}/>
+            <Text style={userStyles.userName}>username</Text>
+          </View>
+          <View style={homeHead.likes}>
+            <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
+          <Text style={homeHead.likesText}>145</Text>
+          </View>
+        </View>
+
+        <View style={postPreview.Imginfo}>
+          <TouchableOpacity onPress={()=> this.clickImage()}>
+            <Animatable.Image animation="fadeInUp" source={require('./images/example_post.jpeg')} style={postPreview.image}/>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
 }
 
-
-
-
-
+//Homepage
 class Homepage extends React.Component {
   static navigationOptions = {
     title: 'Home',
     tabBarIcon: () => (
       <Image source={require('./assets/icons/home.png')}
-      style={styles.icon}
+      style={NavStyle.icon}
     />
   )
 }
@@ -206,41 +217,13 @@ constructor(props) {
 }
 render() {
   return (
-    <View>
-    <ScrollView><View style={styles.container}><Post navigation={this.props.navigation}/><Post/></View></ScrollView>
-
-    </View>
+    <ScrollView>
+      <Animatable.View animation="fadeInRight" style={Home.container}>
+        <Post navigation={this.props.navigation}/><Post/>
+      </Animatable.View>
+    </ScrollView>
   )
 }
-}
-
-class Login extends React.Component {
-  static navigationOptions = {
-    title: 'Login'
-  }
-  render() {
-    return (
-      <Image source={require('./images/login.jpeg')}
-        style={{flex: 1,
-        backgroundColor: 'transparent',
-        width: undefined,
-        height: undefined,
-        alignItems: 'center',
-        justifyContent: 'center'}}>
-      <Text>Login</Text>
-      <TextInput style={{padding: 10, height: 40}}
-          placeholder="Username"
-        />
-        <TextInput style={{padding: 10, height: 40}}
-          placeholder="Password"
-          secureTextEntry={true}
-        />
-        <TouchableOpacity onPress={()=> this.props.navigation.navigate('Home')}>
-          <Text>Tap to Login</Text>
-        </TouchableOpacity>
-      </Image>
-    );
-  }
 }
 
 const Tab = TabNavigator({
@@ -289,6 +272,81 @@ const MyApp = StackNavigator ({
   },
 
 },)
+
+const NavStyle = StyleSheet.create({
+  icon: {
+    width: 30,
+    height: 30 ,
+  }
+})
+
+const Home = StyleSheet.create({
+  container:{
+    display: 'flex',
+    alignItems:'center'
+  }
+})
+
+const userStyles = StyleSheet.create({
+  userIcon:{
+    height: 60,
+    width: 60
+  },
+  userName:{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  likeIcon:{
+    height: 30,
+    width: 30
+  }
+})
+
+const homeHead = StyleSheet.create({
+  headerDisplay:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  user:{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  likes:{
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  likesText:{
+    fontSize: 10,
+    color: '#6C6C6C'
+  }
+})
+
+const postPreview = StyleSheet.create({
+  mainContainer:{
+    flex: 1,
+    width: '95%',
+    marginBottom: 20,
+  },
+  Imginfo:{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  image:{
+    height:225,
+    width:225
+  }
+})
+
+
 
 const styles = StyleSheet.create({
   icon: {
