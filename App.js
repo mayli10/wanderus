@@ -51,29 +51,29 @@ class ExploreScreen extends React.Component {
     return (
       <View>
         <View style={styles.category}>
-          <Text>Food</Text>
+          <Text>good eats</Text>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.categoryRow}>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-              <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/food1.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/food2.jpeg')} style={{width: 125, height: 125}}/>
+              <Image source={require('./images/food3.jpeg')} style={{width: 125, height: 125}}/>
             </View>
           </ScrollView>
         </View>
         <View style={styles.category}>
-          <Text>Museums</Text>
+          <Text>explore views</Text>
           <View style={styles.categoryRow}>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/views1.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/views2.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/views3.jpeg')} style={{width: 125, height: 125}}/>
           </View>
         </View>
         <View style={styles.category}>
-          <Text>Shopping</Text>
+          <Text>shop style</Text>
           <View style={styles.categoryRow}>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
-          <Image source={require('./images/example_post.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/shop1.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/shop2.jpeg')} style={{width: 125, height: 125}}/>
+          <Image source={require('./images/shop3.jpeg')} style={{width: 125, height: 125}}/>
           </View>
         </View>
       </View>
