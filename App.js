@@ -32,9 +32,9 @@ class PostScreen extends React.Component {
   };
 
   constructor(props) {
-      super(props);
+    super(props);
     this.state= {};
-    }
+  }
 
   render() {
     return (
@@ -72,18 +72,18 @@ class Homepage extends React.Component {
     title: 'Home',
     tabBarIcon: () => (
       <Image source={require('./assets/icons/home.png')}
-        style={styles.icon}
-      />
-    )
-  }
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <ScrollView><View style={styles.container}><Post navigation={this.props.navigation}/><Post/></View></ScrollView>
-    )
-  }
+      style={styles.icon}
+    />
+  )
+}
+constructor(props) {
+  super(props)
+}
+render() {
+  return (
+    <ScrollView><View style={styles.container}><Post navigation={this.props.navigation}/><Post/></View></ScrollView>
+  )
+}
 }
 
 
@@ -95,6 +95,15 @@ const Tab = TabNavigator({
   User: {
     screen: UserProfile
   }
+},{
+  tabBarOptions: {
+    style: {
+      backgroundColor: '#BDC3C7',
+      height: 40
+    },
+    showLabel: false,
+  }
+
 });
 
 
@@ -108,12 +117,21 @@ const MyApp = StackNavigator ({
   PostPage: {
     screen: PostScreen
   }
-})
+},
+{
+  navigationOptions: {
+    headerTitle: <Image source={require('./assets/icons/logo.png')} style={{width: 150, height:30}}/>,
+    style: {
+      height: 25,
+    }
+  },
+
+},)
 
 const styles = StyleSheet.create({
   icon: {
-    width: 26,
-    height: 26,
+    width: 30,
+    height: 30 ,
   },
   container: {
     flex:1,
