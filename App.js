@@ -491,7 +491,7 @@ class Login extends React.Component {
       password: this.state.password,
     })
   })
-  .then(reponse => response.json())
+  .then(response => response.json())
   .then((responseJSON) => {
     if(responseJSON.success) {
     this.props.navigation.navigate('tab');
@@ -500,7 +500,7 @@ class Login extends React.Component {
       password: this.state.password
   }))
 } else {
-  this.props.navigation.navigate('Homepage')
+  this.props.navigation.navigate('login')
 }
 })
   .catch((err) => {
