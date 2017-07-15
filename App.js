@@ -271,15 +271,9 @@ class RegisterScreen extends React.Component {
       password: this.state.password,
     })
   })
-  .then((response) => response.json())
-  .then((responseJson) => {
-    /* do something with responseJson and go back to the Login view but
-     * make sure to check for responseJson.success! */
-     console.log(responseJson.success)
-     if (responseJson.success) {
-       this.props.navigation.navigate('login');
-     }
-  })
+  .then((response) => {
+       this.props.navigation.navigate('login')
+    })
   .catch((err) => {
     /* do something if there was an error with fetching */
     console.log('Error', err)
