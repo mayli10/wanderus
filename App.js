@@ -512,7 +512,6 @@ class LoginScreen extends React.Component {
       })
     })
     .then(response => {
-      this.props.navigation.navigate('tab') //REMOVE LATER
       response.json()})
       .then((responseJSON) => {
         if(responseJSON.success) {
