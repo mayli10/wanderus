@@ -65,16 +65,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
 }
 ));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-
-
-
 app.post('/register', function(req, res) {
     if ((req.body.username) && (req.body.password) && validateReq(req.body.password)) {
       var user = new User({
@@ -104,6 +94,17 @@ app.post('/register', function(req, res) {
   app.get('/loginSuccess', function(req,res) {
     res.json({"success": "true"})
   })
+
+
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
 
   // app.get('/homepage')
 
