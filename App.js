@@ -347,7 +347,7 @@ class Post extends React.Component {
         <View style={stdUserDisp.headerDisplay}>
           <View style={stdUserDisp.user}>
             <Image source={this.props.userImage} style={userStyles.userIcon}/>
-            <Text style={userStyles.userName}>username</Text>
+            <Text style={userStyles.userName}>{this.props.username}</Text>
           </View>
           <View style={stdUserDisp.likes}>
             <Image source={require('./assets/icons/Heart-Dark.png')} style={userStyles.likeIcon}/>
@@ -396,7 +396,7 @@ render() {
   return (
     <ScrollView>
       <Animatable.View animation="fadeInRight" style={Home.container}>
-        <Post navigation={this.props.navigation} userImage={chloeIcon}/><Post userImage={eliseIcon}/>
+        <Post navigation={this.props.navigation} userImage={chloeIcon} username='chloeymoon'/><Post userImage={eliseIcon} username='elisenyang'/>
       </Animatable.View>
     </ScrollView>
   )
